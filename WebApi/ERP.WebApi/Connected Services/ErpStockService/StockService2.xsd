@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ERP.StockService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ERP.StockService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfDS_IncomePrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DS_IncomePrice" nillable="true" type="tns:DS_IncomePrice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDS_IncomePrice" nillable="true" type="tns:ArrayOfDS_IncomePrice" />
+  <xs:complexType name="DS_IncomePrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BranchID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Contract" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CurrencyID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CustomerID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DS_IncomePriceItems" nillable="true" type="tns:ArrayOfDS_IncomePriceItems" />
+      <xs:element minOccurs="0" name="DS_StockID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocDueDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DsPaymentTypeID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExternalDocDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExternalDocNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IncomeDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastPaymentDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OperationalDay" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OwnerID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PJProjectID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PhysicalPersonID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RefIncomeTypeID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatusID" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DS_IncomePrice" nillable="true" type="tns:DS_IncomePrice" />
+  <xs:complexType name="ArrayOfDS_IncomePriceItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DS_IncomePriceItems" nillable="true" type="tns:DS_IncomePriceItems" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDS_IncomePriceItems" nillable="true" type="tns:ArrayOfDS_IncomePriceItems" />
+  <xs:complexType name="DS_IncomePriceItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BranchID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CurrencyID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CustomerID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DS_IncomePrice" nillable="true" type="tns:DS_IncomePrice" />
+      <xs:element minOccurs="0" name="DS_IncomePriceID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DS_IncomePriseSimpleItemItems" nillable="true" type="tns:ArrayOfDS_IncomePriseSimpleItemItems" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocDueDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HasWarranty" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OperationalDay" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OwnerID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductUnitID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="QualityID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VHFDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VHFNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VatID" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="VatPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WarrantyDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WarrantyMonth" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WarrantyType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DS_IncomePriceItems" nillable="true" type="tns:DS_IncomePriceItems" />
+  <xs:complexType name="ArrayOfDS_IncomePriseSimpleItemItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DS_IncomePriseSimpleItemItems" nillable="true" type="tns:DS_IncomePriseSimpleItemItems" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDS_IncomePriseSimpleItemItems" nillable="true" type="tns:ArrayOfDS_IncomePriseSimpleItemItems" />
+  <xs:complexType name="DS_IncomePriseSimpleItemItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DS_IncomePriceItem" nillable="true" type="tns:DS_IncomePriceItems" />
+      <xs:element minOccurs="0" name="Ds_refBotanicTypeIDs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnterDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IdParent" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IsFirst" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Moisture" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Weight" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DS_IncomePriseSimpleItemItems" nillable="true" type="tns:DS_IncomePriseSimpleItemItems" />
+</xs:schema>
