@@ -1060,6 +1060,720 @@ namespace ERP.WebApi.ErpStockService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DS_Outcome", Namespace="http://schemas.datacontract.org/2004/07/ERP.StockService")]
+    [System.SerializableAttribute()]
+    public partial class DS_Outcome : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> BranchIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreateDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CurrencyIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ERP.WebApi.ErpStockService.DS_OutcomeItems[] DS_OutcomeItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DS_StockIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DocDueDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ExternalDocDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExternalDocNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> OperationalDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> OutcomeDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> OwnerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> PJProjectIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PhysicalPersonIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> RefAddressIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> RefOutcomeTypeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal StatusIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> StructIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> BranchID {
+            get {
+                return this.BranchIDField;
+            }
+            set {
+                if ((this.BranchIDField.Equals(value) != true)) {
+                    this.BranchIDField = value;
+                    this.RaisePropertyChanged("BranchID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreateDate {
+            get {
+                return this.CreateDateField;
+            }
+            set {
+                if ((this.CreateDateField.Equals(value) != true)) {
+                    this.CreateDateField = value;
+                    this.RaisePropertyChanged("CreateDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CurrencyID {
+            get {
+                return this.CurrencyIDField;
+            }
+            set {
+                if ((this.CurrencyIDField.Equals(value) != true)) {
+                    this.CurrencyIDField = value;
+                    this.RaisePropertyChanged("CurrencyID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ERP.WebApi.ErpStockService.DS_OutcomeItems[] DS_OutcomeItems {
+            get {
+                return this.DS_OutcomeItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DS_OutcomeItemsField, value) != true)) {
+                    this.DS_OutcomeItemsField = value;
+                    this.RaisePropertyChanged("DS_OutcomeItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> DS_StockID {
+            get {
+                return this.DS_StockIDField;
+            }
+            set {
+                if ((this.DS_StockIDField.Equals(value) != true)) {
+                    this.DS_StockIDField = value;
+                    this.RaisePropertyChanged("DS_StockID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DocDueDate {
+            get {
+                return this.DocDueDateField;
+            }
+            set {
+                if ((this.DocDueDateField.Equals(value) != true)) {
+                    this.DocDueDateField = value;
+                    this.RaisePropertyChanged("DocDueDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> ExternalDocDate {
+            get {
+                return this.ExternalDocDateField;
+            }
+            set {
+                if ((this.ExternalDocDateField.Equals(value) != true)) {
+                    this.ExternalDocDateField = value;
+                    this.RaisePropertyChanged("ExternalDocDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExternalDocNumber {
+            get {
+                return this.ExternalDocNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExternalDocNumberField, value) != true)) {
+                    this.ExternalDocNumberField = value;
+                    this.RaisePropertyChanged("ExternalDocNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> OperationalDay {
+            get {
+                return this.OperationalDayField;
+            }
+            set {
+                if ((this.OperationalDayField.Equals(value) != true)) {
+                    this.OperationalDayField = value;
+                    this.RaisePropertyChanged("OperationalDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> OutcomeDate {
+            get {
+                return this.OutcomeDateField;
+            }
+            set {
+                if ((this.OutcomeDateField.Equals(value) != true)) {
+                    this.OutcomeDateField = value;
+                    this.RaisePropertyChanged("OutcomeDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> OwnerID {
+            get {
+                return this.OwnerIDField;
+            }
+            set {
+                if ((this.OwnerIDField.Equals(value) != true)) {
+                    this.OwnerIDField = value;
+                    this.RaisePropertyChanged("OwnerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> PJProjectID {
+            get {
+                return this.PJProjectIDField;
+            }
+            set {
+                if ((this.PJProjectIDField.Equals(value) != true)) {
+                    this.PJProjectIDField = value;
+                    this.RaisePropertyChanged("PJProjectID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PhysicalPersonID {
+            get {
+                return this.PhysicalPersonIDField;
+            }
+            set {
+                if ((this.PhysicalPersonIDField.Equals(value) != true)) {
+                    this.PhysicalPersonIDField = value;
+                    this.RaisePropertyChanged("PhysicalPersonID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> RefAddressID {
+            get {
+                return this.RefAddressIDField;
+            }
+            set {
+                if ((this.RefAddressIDField.Equals(value) != true)) {
+                    this.RefAddressIDField = value;
+                    this.RaisePropertyChanged("RefAddressID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> RefOutcomeTypeID {
+            get {
+                return this.RefOutcomeTypeIDField;
+            }
+            set {
+                if ((this.RefOutcomeTypeIDField.Equals(value) != true)) {
+                    this.RefOutcomeTypeIDField = value;
+                    this.RaisePropertyChanged("RefOutcomeTypeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal StatusID {
+            get {
+                return this.StatusIDField;
+            }
+            set {
+                if ((this.StatusIDField.Equals(value) != true)) {
+                    this.StatusIDField = value;
+                    this.RaisePropertyChanged("StatusID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> StructID {
+            get {
+                return this.StructIDField;
+            }
+            set {
+                if ((this.StructIDField.Equals(value) != true)) {
+                    this.StructIDField = value;
+                    this.RaisePropertyChanged("StructID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DS_OutcomeItems", Namespace="http://schemas.datacontract.org/2004/07/ERP.StockService")]
+    [System.SerializableAttribute()]
+    public partial class DS_OutcomeItems : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> BranchIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> ContractIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CurrencyIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CurrentWeightField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> CustomerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ERP.WebApi.ErpStockService.DS_Outcome DS_OutcomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DS_OutcomeIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> DocDueDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> OperationalDayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> OwnerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> ProductUnitIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> QualityIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> QuantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SerialNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> StatusIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> VHFDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string VHFNumField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> BranchID {
+            get {
+                return this.BranchIDField;
+            }
+            set {
+                if ((this.BranchIDField.Equals(value) != true)) {
+                    this.BranchIDField = value;
+                    this.RaisePropertyChanged("BranchID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> ContractID {
+            get {
+                return this.ContractIDField;
+            }
+            set {
+                if ((this.ContractIDField.Equals(value) != true)) {
+                    this.ContractIDField = value;
+                    this.RaisePropertyChanged("ContractID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CurrencyID {
+            get {
+                return this.CurrencyIDField;
+            }
+            set {
+                if ((this.CurrencyIDField.Equals(value) != true)) {
+                    this.CurrencyIDField = value;
+                    this.RaisePropertyChanged("CurrencyID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CurrentWeight {
+            get {
+                return this.CurrentWeightField;
+            }
+            set {
+                if ((this.CurrentWeightField.Equals(value) != true)) {
+                    this.CurrentWeightField = value;
+                    this.RaisePropertyChanged("CurrentWeight");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> CustomerID {
+            get {
+                return this.CustomerIDField;
+            }
+            set {
+                if ((this.CustomerIDField.Equals(value) != true)) {
+                    this.CustomerIDField = value;
+                    this.RaisePropertyChanged("CustomerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ERP.WebApi.ErpStockService.DS_Outcome DS_Outcome {
+            get {
+                return this.DS_OutcomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DS_OutcomeField, value) != true)) {
+                    this.DS_OutcomeField = value;
+                    this.RaisePropertyChanged("DS_Outcome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> DS_OutcomeID {
+            get {
+                return this.DS_OutcomeIDField;
+            }
+            set {
+                if ((this.DS_OutcomeIDField.Equals(value) != true)) {
+                    this.DS_OutcomeIDField = value;
+                    this.RaisePropertyChanged("DS_OutcomeID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> DocDueDate {
+            get {
+                return this.DocDueDateField;
+            }
+            set {
+                if ((this.DocDueDateField.Equals(value) != true)) {
+                    this.DocDueDateField = value;
+                    this.RaisePropertyChanged("DocDueDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> OperationalDay {
+            get {
+                return this.OperationalDayField;
+            }
+            set {
+                if ((this.OperationalDayField.Equals(value) != true)) {
+                    this.OperationalDayField = value;
+                    this.RaisePropertyChanged("OperationalDay");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> OwnerID {
+            get {
+                return this.OwnerIDField;
+            }
+            set {
+                if ((this.OwnerIDField.Equals(value) != true)) {
+                    this.OwnerIDField = value;
+                    this.RaisePropertyChanged("OwnerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Picture {
+            get {
+                return this.PictureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
+                    this.PictureField = value;
+                    this.RaisePropertyChanged("Picture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> ProductUnitID {
+            get {
+                return this.ProductUnitIDField;
+            }
+            set {
+                if ((this.ProductUnitIDField.Equals(value) != true)) {
+                    this.ProductUnitIDField = value;
+                    this.RaisePropertyChanged("ProductUnitID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> QualityID {
+            get {
+                return this.QualityIDField;
+            }
+            set {
+                if ((this.QualityIDField.Equals(value) != true)) {
+                    this.QualityIDField = value;
+                    this.RaisePropertyChanged("QualityID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SerialNumber {
+            get {
+                return this.SerialNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SerialNumberField, value) != true)) {
+                    this.SerialNumberField = value;
+                    this.RaisePropertyChanged("SerialNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> StatusID {
+            get {
+                return this.StatusIDField;
+            }
+            set {
+                if ((this.StatusIDField.Equals(value) != true)) {
+                    this.StatusIDField = value;
+                    this.RaisePropertyChanged("StatusID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> VHFDate {
+            get {
+                return this.VHFDateField;
+            }
+            set {
+                if ((this.VHFDateField.Equals(value) != true)) {
+                    this.VHFDateField = value;
+                    this.RaisePropertyChanged("VHFDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VHFNum {
+            get {
+                return this.VHFNumField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VHFNumField, value) != true)) {
+                    this.VHFNumField = value;
+                    this.RaisePropertyChanged("VHFNum");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ErpStockService.IStockService")]
     public interface IStockService {
@@ -1069,6 +1783,12 @@ namespace ERP.WebApi.ErpStockService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStockService/GetIncomePriceList", ReplyAction="http://tempuri.org/IStockService/GetIncomePriceListResponse")]
         System.Threading.Tasks.Task<ERP.WebApi.ErpStockService.DS_IncomePrice[]> GetIncomePriceListAsync(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStockService/GetOutcomeList", ReplyAction="http://tempuri.org/IStockService/GetOutcomeListResponse")]
+        ERP.WebApi.ErpStockService.DS_Outcome[] GetOutcomeList(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStockService/GetOutcomeList", ReplyAction="http://tempuri.org/IStockService/GetOutcomeListResponse")]
+        System.Threading.Tasks.Task<ERP.WebApi.ErpStockService.DS_Outcome[]> GetOutcomeListAsync(int Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1104,6 +1824,14 @@ namespace ERP.WebApi.ErpStockService {
         
         public System.Threading.Tasks.Task<ERP.WebApi.ErpStockService.DS_IncomePrice[]> GetIncomePriceListAsync(int Id) {
             return base.Channel.GetIncomePriceListAsync(Id);
+        }
+        
+        public ERP.WebApi.ErpStockService.DS_Outcome[] GetOutcomeList(int Id) {
+            return base.Channel.GetOutcomeList(Id);
+        }
+        
+        public System.Threading.Tasks.Task<ERP.WebApi.ErpStockService.DS_Outcome[]> GetOutcomeListAsync(int Id) {
+            return base.Channel.GetOutcomeListAsync(Id);
         }
     }
 }

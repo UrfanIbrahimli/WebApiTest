@@ -42,6 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.6.7\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -65,9 +70,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DS_IncomePrice.cs" />
-    <Compile Include="DS_IncomePriceItems.cs" />
-    <Compile Include="DS_IncomePriseSimpleItemItems.cs" />
+    <Compile Include="Models\DS_IncomePrice.cs" />
+    <Compile Include="Models\DS_IncomePriceItems.cs" />
+    <Compile Include="Models\DS_IncomePriseSimpleItemItems.cs" />
+    <Compile Include="Models\DS_Outcome.cs" />
+    <Compile Include="Models\DS_OutcomeItems.cs" />
     <Compile Include="IStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockService.svc.cs">
@@ -78,6 +85,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NLog.config" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
