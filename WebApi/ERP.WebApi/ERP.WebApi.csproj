@@ -82,22 +82,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ErpStockService\configuration91.svcinfo" />
+    <None Include="Connected Services\ErpStockService\configuration.svcinfo" />
     <Content Include="Connected Services\ErpStockService\ERP.WebApi.ErpStockService.DS_IncomePrice.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Connected Services\ErpStockService\StockService.disco" />
-    <None Include="Connected Services\ErpStockService\configuration91.svcinfo" />
-    <None Include="Connected Services\ErpStockService\configuration.svcinfo" />
     <None Include="Connected Services\ErpStockService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
-    <None Include="Connected Services\ErpStockService\StockService.wsdl" />
-    <None Include="Connected Services\ErpStockService\StockService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -113,10 +108,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ErpStockService\StockService.wsdl" />
     <None Include="Connected Services\ErpStockService\StockService.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ErpStockService\StockService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ErpStockService\StockService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

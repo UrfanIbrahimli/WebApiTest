@@ -19,7 +19,6 @@ namespace ERP.StockService
         public decimal? IdParent { get; set; }
 
         public string Ds_refBotanicTypeIDs { get; set; }
-
         public virtual DS_IncomePriceItems DS_IncomePriceItem { get; set; }
     }
 }

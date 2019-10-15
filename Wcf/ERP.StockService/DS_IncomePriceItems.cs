@@ -5,11 +5,6 @@ namespace ERP.StockService
 
     public partial class DS_IncomePriceItems
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DS_IncomePriceItems()
-        {
-            DS_IncomePriseSimpleItemItems = new HashSet<DS_IncomePriseSimpleItemItems>();
-        }
         public decimal ID { get; set; }
 
         public decimal? DS_IncomePriceID { get; set; }
@@ -64,10 +59,7 @@ namespace ERP.StockService
 
         public string Code { get; set; }
 
-        public virtual DS_IncomePrice DS_IncomePrice  { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DS_IncomePriseSimpleItemItems> DS_IncomePriseSimpleItemItems { get; set; }
-
+        public DS_IncomePrice DS_IncomePrice  { get; set; }
+        public DS_IncomePriseSimpleItemItems DS_IncomePriseSimpleItem { get; set; }
     }
 }

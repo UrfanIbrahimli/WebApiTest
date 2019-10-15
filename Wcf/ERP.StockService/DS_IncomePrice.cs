@@ -54,6 +54,6 @@
         public decimal? DsPaymentTypeID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DS_IncomePriceItems> DS_IncomePriceItems { get; set; }
+        public ICollection<DS_IncomePriceItems> DS_IncomePriceItems { get; set; }
     }
 }

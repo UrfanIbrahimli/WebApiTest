@@ -12,7 +12,8 @@ namespace ERP.StockService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StockService.svc or StockService.svc.cs at the Solution Explorer and start debugging.
     public class StockService : IStockService
     {
-        string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
+        //string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
+        string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
 
         public List<DS_IncomePrice> GetIncomePriceList(int Id)
         {
@@ -100,16 +101,16 @@ namespace ERP.StockService
                         DocDueDate = ReplaceNullDateTime(dataReader["DS_IPI_DocDueDate"]),
                         OperationalDay = ReplaceNullDateTime(dataReader["DS_IPI_OperationalDay"]),
                     };
-                    model.DS_IncomePriseSimpleItemItems = GetIncomePriseSimpleItemItems(model.ID);
+                    model.DS_IncomePriseSimpleItem = GetIncomePriseSimpleItemItems(model.ID);
                     models.Add(model);
                 }
                 return models;
             }
         }
 
-        public List<DS_IncomePriseSimpleItemItems> GetIncomePriseSimpleItemItems(decimal IdParent)
+        public DS_IncomePriseSimpleItemItems GetIncomePriseSimpleItemItems(decimal IdParent)
         {
-            List<DS_IncomePriseSimpleItemItems> models = new List<DS_IncomePriseSimpleItemItems>();
+            DS_IncomePriseSimpleItemItems model = new DS_IncomePriseSimpleItemItems();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -123,23 +124,16 @@ namespace ERP.StockService
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@IdParent", IdParent);
                 SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    DS_IncomePriseSimpleItemItems model = new DS_IncomePriseSimpleItemItems
-                    {
-                        ID = ReplaceNullDecimal(dataReader["DS_IPSII_ID"]),
-                        SerialNumber = ReplaceNullString(dataReader["DS_IPSII_SerialNumber"]),
-                        EnterDate = ReplaceNullDateTime(dataReader["EnterDate"]),
-                        Weight = ReplaceNullDecimal(dataReader["Weight"]),
-                        Moisture = ReplaceNullDecimal(dataReader["Moisture"]),
-                        IsFirst = ReplaceNullBool(dataReader["IsFirst"]),
-                        Ds_refBotanicTypeIDs = ReplaceNullString(dataReader["Ds_refBotanicTypeIDs"])
-                    };
-                    models.Add(model);
-                }
-                return models;
+                dataReader.Read();
+                model.ID = ReplaceNullDecimal(dataReader["DS_IPSII_ID"]);
+                model.SerialNumber = ReplaceNullString(dataReader["DS_IPSII_SerialNumber"]);
+                model.EnterDate = ReplaceNullDateTime(dataReader["EnterDate"]);
+                model.Weight = ReplaceNullDecimal(dataReader["Weight"]);
+                model.Moisture = ReplaceNullDecimal(dataReader["Moisture"]);
+                model.IsFirst = ReplaceNullBool(dataReader["IsFirst"]);
+                model.Ds_refBotanicTypeIDs = ReplaceNullString(dataReader["Ds_refBotanicTypeIDs"]);
+                return model;
             }
-
         }
         public string ReplaceNullString(object value)
         {
