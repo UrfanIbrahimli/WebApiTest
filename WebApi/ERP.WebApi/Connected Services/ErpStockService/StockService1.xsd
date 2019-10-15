@@ -15,4 +15,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetOutcomeList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOutcomeListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ERP.StockService" minOccurs="0" name="GetOutcomeListResult" nillable="true" type="q2:ArrayOfDS_Outcome" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

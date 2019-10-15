@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,57 +13,66 @@ namespace ERP.StockService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StockService.svc or StockService.svc.cs at the Solution Explorer and start debugging.
     public class StockService : IStockService
     {
-        //string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
-        string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
-
+        string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
+        //string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
+        private readonly ILogger _logger;
+        public StockService()
+        {
+            _logger = LogManager.GetCurrentClassLogger();
+        }
+        #region GetIncomePriceList
         public List<DS_IncomePrice> GetIncomePriceList(int Id)
         {
             List<DS_IncomePrice> models = new List<DS_IncomePrice>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string sqlQuery = @"SELECT 
-                    DS_IP.ID as DS_IP_ID, DS_IP.StatusID as DS_IP_StatusID, DS_IP.OwnerID as DS_IP_OwnerID, DS_IP.BranchID as DS_IP_BranchID,
-                    DS_IP.CurrencyID as DS_IP_CurrencyID, DS_IP.CustomerID as DS_IP_CustomerID, DS_IP.PhysicalPersonID,DS_IP.ExternalDocNumber,
-                    DS_IP.ExternalDocDate,DS_IP.CreateDate,DS_IP.IncomeDate,DS_IP.DS_StockID,DS_IP.RefIncomeTypeID,DS_IP.Description as DS_IP_Description,
-                    DS_IP.Contract, DS_IP.ContractDate,DS_IP.LastPaymentDate,DS_IP.DocDueDate as DS_IP_DocDueDate,
-                    DS_IP.PJProjectID,DS_IP.OperationalDay as DS_IP_OperationalDay,DS_IP.DsPaymentTypeID
-                    FROM CASPELERP.DS_IncomePrice DS_IP
-                    WHERE DS_IP.DS_StockID = @Id";
-
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                command.Parameters.AddWithValue("@Id", Id);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    DS_IncomePrice model = new DS_IncomePrice
+                    connection.Open();
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id";
+
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    command.Parameters.AddWithValue("@Id", Id);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
                     {
-                        ID = ReplaceNullDecimal(dataReader["DS_IP_ID"]),
-                        StatusID = ReplaceNullDecimal(dataReader["DS_IP_StatusID"]),
-                        OwnerID = ReplaceNullDecimal(dataReader["DS_IP_OwnerID"]),
-                        BranchID = ReplaceNullDecimal(dataReader["DS_IP_BranchID"]),
-                        CurrencyID = ReplaceNullDecimal(dataReader["DS_IP_CurrencyID"]),
-                        CustomerID = ReplaceNullDecimal(dataReader["DS_IP_CustomerID"]),
-                        PhysicalPersonID = ReplaceNullDecimal(dataReader["PhysicalPersonID"]),
-                        ExternalDocNumber = ReplaceNullString(dataReader["ExternalDocNumber"]),
-                        ExternalDocDate = ReplaceNullDateTime(dataReader["ExternalDocDate"]),
-                        CreateDate = ReplaceNullDateTime(dataReader["CreateDate"]),
-                        IncomeDate = ReplaceNullDateTime(dataReader["IncomeDate"]),
-                        DS_StockID = ReplaceNullDecimal(dataReader["DS_StockID"]),
-                        RefIncomeTypeID = ReplaceNullDecimal(dataReader["RefIncomeTypeID"]),
-                        Description = ReplaceNullString(dataReader["DS_IP_Description"]),
-                        Contract = ReplaceNullString(dataReader["Contract"]),
-                        ContractDate = ReplaceNullDateTime(dataReader["ContractDate"]),
-                        DocDueDate = ReplaceNullDateTime(dataReader["DS_IP_DocDueDate"]),
-                        PJProjectID = ReplaceNullDecimal(dataReader["PJProjectID"]),
-                        OperationalDay = ReplaceNullDateTime(dataReader["DS_IP_OperationalDay"]),
-                        DsPaymentTypeID = ReplaceNullDecimal(dataReader["DsPaymentTypeID"]),
-                    };
-                    model.DS_IncomePriceItems = GetIncomePriceItems(model.ID);
-                    models.Add(model);
+                        DS_IncomePrice model = new DS_IncomePrice
+                        {
+                            ID = ReplaceNullDecimal(dataReader["ID"]),
+                            StatusID = ReplaceNullDecimal(dataReader["StatusID"]),
+                            OwnerID = ReplaceNullDecimal(dataReader["OwnerID"]),
+                            BranchID = ReplaceNullDecimal(dataReader["BranchID"]),
+                            CurrencyID = ReplaceNullDecimal(dataReader["CurrencyID"]),
+                            CustomerID = ReplaceNullDecimal(dataReader["CustomerID"]),
+                            PhysicalPersonID = ReplaceNullDecimal(dataReader["PhysicalPersonID"]),
+                            ExternalDocNumber = ReplaceNullString(dataReader["ExternalDocNumber"]),
+                            ExternalDocDate = ReplaceNullDateTime(dataReader["ExternalDocDate"]),
+                            CreateDate = ReplaceNullDateTime(dataReader["CreateDate"]),
+                            IncomeDate = ReplaceNullDateTime(dataReader["IncomeDate"]),
+                            DS_StockID = ReplaceNullDecimal(dataReader["DS_StockID"]),
+                            RefIncomeTypeID = ReplaceNullDecimal(dataReader["RefIncomeTypeID"]),
+                            Description = ReplaceNullString(dataReader["Description"]),
+                            Contract = ReplaceNullString(dataReader["Contract"]),
+                            ContractDate = ReplaceNullDateTime(dataReader["ContractDate"]),
+                            LastPaymentDate = ReplaceNullDateTime(dataReader["LastPaymentDate"]),
+                            DocDueDate = ReplaceNullDateTime(dataReader["DocDueDate"]),
+                            PJProjectID = ReplaceNullDecimal(dataReader["PJProjectID"]),
+                            OperationalDay = ReplaceNullDateTime(dataReader["OperationalDay"]),
+                            DsPaymentTypeID = ReplaceNullDecimal(dataReader["DsPaymentTypeID"]),
+                        };
+                        model.DS_IncomePriceItems = GetIncomePriceItems(model.ID);
+                        models.Add(model);
+                    }
+                    _logger.Info($"GetIncomePriceList({string.Join(",", Id)})");
+                    return models;
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"GetIncomePriceList({string.Join(",", Id)}), Exception: {ex.Message}");
                 return models;
             }
+            
         }
 
 
@@ -70,71 +80,208 @@ namespace ERP.StockService
         {
             List<DS_IncomePriceItems> models = new List<DS_IncomePriceItems>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string sqlQuery = @"SELECT 
-                    DS_IPI.ID as DS_IPI_ID, DS_IPI.ProductUnitID,DS_IPI.Quantity,DS_IPI.Price,DS_IPI.SerialNumber as DS_IPI_SerialNumber,
-                    DS_IPI.QualityID,DS_IPI.Description as DS_IPI_Description,DS_IPI.Picture,DS_IPI.VatID,
-                    DS_IPI.VatPrice,DS_IPI.DocDueDate as DS_IPI_DocDueDate,DS_IPI.OperationalDay as DS_IPI_OperationalDay, DS_IPI.AddressID,DS_IPI.OwnerID as DS_IPI_OwnerID,
-                    DS_IPI.StatusID as DS_IPI_StatusID, DS_IPI.BranchID as DS_IPI_BranchID, DS_IPI.CustomerID as DS_IPI_CustomerID, 
-                    DS_IPI.CurrencyID as DS_IPI_CurrencyID, DS_IPI.ContractID, DS_IPI.VHFNum,DS_IPI.VHFDate,DS_IPI.HasWarranty,DS_IPI.WarrantyType,
-                    DS_IPI.WarrantyMonth,DS_IPI.WarrantyDescription,DS_IPI.Code
-                    FROM CASPELERP.DS_IncomePriceItems DS_IPI 
-                    WHERE DS_IPI.DS_IncomePriceID = @IncomePriceID";
-
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                command.Parameters.AddWithValue("@IncomePriceID", IncomePriceID);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    DS_IncomePriceItems model = new DS_IncomePriceItems
+                    connection.Open();
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePriceItems WHERE DS_IncomePriceID = @IncomePriceID";
+
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    command.Parameters.AddWithValue("@IncomePriceID", IncomePriceID);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
                     {
-                        ID = ReplaceNullDecimal(dataReader["DS_IPI_ID"]),
-                        StatusID = ReplaceNullDecimal(dataReader["DS_IPI_StatusID"]),
-                        SerialNumber = ReplaceNullString(dataReader["DS_IPI_SerialNumber"]),
-                        OwnerID = ReplaceNullDecimal(dataReader["DS_IPI_OwnerID"]),
-                        BranchID = ReplaceNullDecimal(dataReader["DS_IPI_BranchID"]),
-                        CurrencyID = ReplaceNullDecimal(dataReader["DS_IPI_CurrencyID"]),
-                        CustomerID = ReplaceNullDecimal(dataReader["DS_IPI_CustomerID"]),
-                        Description = ReplaceNullString(dataReader["DS_IPI_Description"]),
-                        DocDueDate = ReplaceNullDateTime(dataReader["DS_IPI_DocDueDate"]),
-                        OperationalDay = ReplaceNullDateTime(dataReader["DS_IPI_OperationalDay"]),
-                    };
-                    model.DS_IncomePriseSimpleItem = GetIncomePriseSimpleItemItems(model.ID);
-                    models.Add(model);
+                        DS_IncomePriceItems model = new DS_IncomePriceItems
+                        {
+                            ID = ReplaceNullDecimal(dataReader["ID"]),
+                            DS_IncomePriceID = ReplaceNullDecimal(dataReader["DS_IncomePriceID"]),
+                            ProductUnitID = ReplaceNullDecimal(dataReader["ProductUnitID"]),
+                            Quantity = ReplaceNullDecimal(dataReader["Quantity"]),
+                            Price = ReplaceNullDecimal(dataReader["Price"]),
+                            StatusID = ReplaceNullDecimal(dataReader["StatusID"]),
+                            SerialNumber = ReplaceNullString(dataReader["SerialNumber"]),
+                            QualityID = ReplaceNullDecimal(dataReader["QualityID"]),
+                            AddressID = ReplaceNullDecimal(dataReader["AddressID"]),
+                            OwnerID = ReplaceNullDecimal(dataReader["OwnerID"]),
+                            BranchID = ReplaceNullDecimal(dataReader["BranchID"]),
+                            CurrencyID = ReplaceNullDecimal(dataReader["CurrencyID"]),
+                            CustomerID = ReplaceNullDecimal(dataReader["CustomerID"]),
+                            ContractID = ReplaceNullDecimal(dataReader["ContractID"]),
+                            Description = ReplaceNullString(dataReader["Description"]),
+                            VHFNum = ReplaceNullString(dataReader["VHFNum"]),
+                            DocDueDate = ReplaceNullDateTime(dataReader["DocDueDate"]),
+                            OperationalDay = ReplaceNullDateTime(dataReader["OperationalDay"]),
+                            Picture = ReplaceNullByte(dataReader["Picture"]),
+                            VatID = ReplaceNullDecimal(dataReader["VatID"]),
+                            VatPrice = ReplaceNullDecimal(dataReader["VatPrice"]),
+                            VHFDate = ReplaceNullDateTime(dataReader["VHFDate"]),
+                            HasWarranty = ReplaceNullBool(dataReader["HasWarranty"]),
+                            WarrantyType = ReplaceNullString(dataReader["WarrantyType"]),
+                            WarrantyMonth = ReplaceNullDecimal(dataReader["WarrantyMonth"]),
+                            WarrantyDescription = ReplaceNullString(dataReader["WarrantyDescription"]),
+                            Code = ReplaceNullString(dataReader["Code"]),
+
+                        };
+                        model.DS_IncomePriseSimpleItem = GetIncomePriseSimpleItemItems(model.ID);
+                        models.Add(model);
+                    }
+                    _logger.Info($"GetIncomePriceItems({string.Join(",", IncomePriceID)})");
+                    return models;
                 }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"GetIncomePriceItems({string.Join(",", IncomePriceID)}), Exception: {ex.Message}");
                 return models;
             }
+
+            
         }
 
         public DS_IncomePriseSimpleItemItems GetIncomePriseSimpleItemItems(decimal IdParent)
         {
             DS_IncomePriseSimpleItemItems model = new DS_IncomePriseSimpleItemItems();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                string sqlQuery = @" SELECT 
-                        DS_IPSII.ID as DS_IPSII_ID , DS_IPSII.SerialNumber as DS_IPSII_SerialNumber,DS_IPSII.EnterDate,
-                        DS_IPSII.Weight,DS_IPSII.Moisture,DS_IPSII.IsFirst,DS_IPSII.Ds_refBotanicTypeIDs
-                        FROM CASPELERP.DS_IncomePriseSimpleItemItems DS_IPSII
-                        Where DS_IPSII.IdParent = @IdParent";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePriseSimpleItemItems Where IdParent = @IdParent";
 
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                command.Parameters.AddWithValue("@IdParent", IdParent);
-                SqlDataReader dataReader = command.ExecuteReader();
-                dataReader.Read();
-                model.ID = ReplaceNullDecimal(dataReader["DS_IPSII_ID"]);
-                model.SerialNumber = ReplaceNullString(dataReader["DS_IPSII_SerialNumber"]);
-                model.EnterDate = ReplaceNullDateTime(dataReader["EnterDate"]);
-                model.Weight = ReplaceNullDecimal(dataReader["Weight"]);
-                model.Moisture = ReplaceNullDecimal(dataReader["Moisture"]);
-                model.IsFirst = ReplaceNullBool(dataReader["IsFirst"]);
-                model.Ds_refBotanicTypeIDs = ReplaceNullString(dataReader["Ds_refBotanicTypeIDs"]);
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    command.Parameters.AddWithValue("@IdParent", IdParent);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    dataReader.Read();
+                    model.ID = ReplaceNullDecimal(dataReader["ID"]);
+                    model.SerialNumber = ReplaceNullString(dataReader["SerialNumber"]);
+                    model.EnterDate = ReplaceNullDateTime(dataReader["EnterDate"]);
+                    model.Weight = ReplaceNullDecimal(dataReader["Weight"]);
+                    model.Moisture = ReplaceNullDecimal(dataReader["Moisture"]);
+                    model.IsFirst = ReplaceNullBool(dataReader["IsFirst"]);
+                    model.IdParent = ReplaceNullDecimal(dataReader["IdParent"]);
+                    model.Ds_refBotanicTypeIDs = ReplaceNullString(dataReader["Ds_refBotanicTypeIDs"]);
+                    _logger.Info($"GetIncomePriseSimpleItemItems({string.Join(",", IdParent)})");
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"GetIncomePriseSimpleItemItems({string.Join(",", IdParent)}), Exception: {ex.Message}");
                 return model;
             }
+           
         }
+#endregion
+
+        #region GetOutcomeList
+        public List<DS_Outcome> GetOutcomeList(int Id)
+        {
+            List<DS_Outcome> models = new List<DS_Outcome>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id";
+
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    command.Parameters.AddWithValue("@Id", Id);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        DS_Outcome model = new DS_Outcome
+                        {
+                            ID = ReplaceNullDecimal(dataReader["ID"]),
+                            StatusID = ReplaceNullDecimal(dataReader["StatusID"]),
+                            OwnerID = ReplaceNullDecimal(dataReader["OwnerID"]),
+                            BranchID = ReplaceNullDecimal(dataReader["BranchID"]),
+                            CurrencyID = ReplaceNullDecimal(dataReader["CurrencyID"]),
+                            CustomerID = ReplaceNullDecimal(dataReader["CustomerID"]),
+                            PhysicalPersonID = ReplaceNullDecimal(dataReader["PhysicalPersonID"]),
+                            ExternalDocNumber = ReplaceNullString(dataReader["ExternalDocNumber"]),
+                            ExternalDocDate = ReplaceNullDateTime(dataReader["ExternalDocDate"]),
+                            CreateDate = ReplaceNullDateTime(dataReader["CreateDate"]),
+                            OutcomeDate = ReplaceNullDateTime(dataReader["OutcomeDate"]),
+                            DS_StockID = ReplaceNullDecimal(dataReader["DS_StockID"]),
+                            RefOutcomeTypeID = ReplaceNullDecimal(dataReader["RefOutcomeTypeID"]),
+                            Description = ReplaceNullString(dataReader["Description"]),
+                            DocDueDate = ReplaceNullDateTime(dataReader["DocDueDate"]),
+                            PJProjectID = ReplaceNullDecimal(dataReader["PJProjectID"]),
+                            OperationalDay = ReplaceNullDateTime(dataReader["OperationalDay"]),
+                            RefAddressID = ReplaceNullDecimal(dataReader["RefAddressID"]),
+                            StructID = ReplaceNullDecimal(dataReader["StructID"]),
+                        };
+                        model.DS_OutcomeItems = GetOutcomeItems(model.ID);
+                        models.Add(model);
+                    }
+                    _logger.Info($"GetOutcomeList({string.Join(",", Id)})");
+                    return models;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"GetOutcomeList({string.Join(",", Id)}), Exception: {ex.Message}");
+                return models;
+            }
+            
+        }
+
+        public List<DS_OutcomeItems> GetOutcomeItems(decimal OutcomeID)
+        {
+            List<DS_OutcomeItems> models = new List<DS_OutcomeItems>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sqlQuery = @"Select * from CASPELERP.DS_OutcomeItems WHERE DS_OutcomeID = @OutcomeID";
+
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    command.Parameters.AddWithValue("@OutcomeID", OutcomeID);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        DS_OutcomeItems model = new DS_OutcomeItems
+                        {
+                            ID = ReplaceNullDecimal(dataReader["ID"]),
+                            DS_OutcomeID = ReplaceNullDecimal(dataReader["DS_OutcomeID"]),
+                            ProductUnitID = ReplaceNullDecimal(dataReader["ProductUnitID"]),
+                            Quantity = ReplaceNullDecimal(dataReader["Quantity"]),
+                            StatusID = ReplaceNullDecimal(dataReader["StatusID"]),
+                            SerialNumber = ReplaceNullString(dataReader["SerialNumber"]),
+                            QualityID = ReplaceNullDecimal(dataReader["QualityID"]),
+                            OwnerID = ReplaceNullDecimal(dataReader["OwnerID"]),
+                            BranchID = ReplaceNullDecimal(dataReader["BranchID"]),
+                            CurrencyID = ReplaceNullDecimal(dataReader["CurrencyID"]),
+                            CustomerID = ReplaceNullDecimal(dataReader["CustomerID"]),
+                            ContractID = ReplaceNullDecimal(dataReader["ContractID"]),
+                            Description = ReplaceNullString(dataReader["Description"]),
+                            VHFNum = ReplaceNullString(dataReader["VHFNum"]),
+                            DocDueDate = ReplaceNullDateTime(dataReader["DocDueDate"]),
+                            OperationalDay = ReplaceNullDateTime(dataReader["OperationalDay"]),
+                            Picture = ReplaceNullByte(dataReader["Picture"]),
+                            VHFDate = ReplaceNullDateTime(dataReader["VHFDate"]),
+                            Code = ReplaceNullString(dataReader["Code"]),
+                            CurrentWeight = ReplaceNullDecimal(dataReader["CurrentWeight"]),
+                        };
+                        models.Add(model);
+                    }
+                    _logger.Info($"GetOutcomeItems({string.Join(",", OutcomeID)})");
+                    return models;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"GetOutcomeItems({string.Join(",", OutcomeID)}), Exception: {ex.Message}");
+                return models;
+            }
+            
+        }
+
+        #endregion
+
+
         public string ReplaceNullString(object value)
         {
             if (value == null)
@@ -178,6 +325,17 @@ namespace ERP.StockService
                 return DateTime.MinValue;
             }
             return DateTime.Parse(value.ToString());
+        }
+
+       
+
+        public byte[] ReplaceNullByte(object value)
+        {
+            if (value == DBNull.Value)
+            {
+                return null;
+            }
+            return (byte[])value;
         }
     }
 }

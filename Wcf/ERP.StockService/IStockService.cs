@@ -13,5 +13,8 @@ namespace ERP.StockService
     {
         [OperationContract]
         List<DS_IncomePrice> GetIncomePriceList(int Id);
+
+        [OperationContract]
+        List<DS_Outcome> GetOutcomeList(int Id);
     }
 }
