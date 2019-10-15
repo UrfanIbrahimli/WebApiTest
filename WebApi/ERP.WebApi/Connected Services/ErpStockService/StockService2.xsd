@@ -49,7 +49,7 @@
       <xs:element minOccurs="0" name="CustomerID" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="DS_IncomePrice" nillable="true" type="tns:DS_IncomePrice" />
       <xs:element minOccurs="0" name="DS_IncomePriceID" nillable="true" type="xs:decimal" />
-      <xs:element minOccurs="0" name="DS_IncomePriseSimpleItemItems" nillable="true" type="tns:ArrayOfDS_IncomePriseSimpleItemItems" />
+      <xs:element minOccurs="0" name="DS_IncomePriseSimpleItem" nillable="true" type="tns:DS_IncomePriseSimpleItemItems" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DocDueDate" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="HasWarranty" nillable="true" type="xs:boolean" />
@@ -73,12 +73,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DS_IncomePriceItems" nillable="true" type="tns:DS_IncomePriceItems" />
-  <xs:complexType name="ArrayOfDS_IncomePriseSimpleItemItems">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DS_IncomePriseSimpleItemItems" nillable="true" type="tns:DS_IncomePriseSimpleItemItems" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfDS_IncomePriseSimpleItemItems" nillable="true" type="tns:ArrayOfDS_IncomePriseSimpleItemItems" />
   <xs:complexType name="DS_IncomePriseSimpleItemItems">
     <xs:sequence>
       <xs:element minOccurs="0" name="DS_IncomePriceItem" nillable="true" type="tns:DS_IncomePriceItems" />

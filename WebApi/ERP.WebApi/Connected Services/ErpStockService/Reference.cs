@@ -428,7 +428,7 @@ namespace ERP.WebApi.ErpStockService {
         private System.Nullable<decimal> DS_IncomePriceIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ERP.WebApi.ErpStockService.DS_IncomePriseSimpleItemItems[] DS_IncomePriseSimpleItemItemsField;
+        private ERP.WebApi.ErpStockService.DS_IncomePriseSimpleItemItems DS_IncomePriseSimpleItemField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
@@ -605,14 +605,14 @@ namespace ERP.WebApi.ErpStockService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public ERP.WebApi.ErpStockService.DS_IncomePriseSimpleItemItems[] DS_IncomePriseSimpleItemItems {
+        public ERP.WebApi.ErpStockService.DS_IncomePriseSimpleItemItems DS_IncomePriseSimpleItem {
             get {
-                return this.DS_IncomePriseSimpleItemItemsField;
+                return this.DS_IncomePriseSimpleItemField;
             }
             set {
-                if ((object.ReferenceEquals(this.DS_IncomePriseSimpleItemItemsField, value) != true)) {
-                    this.DS_IncomePriseSimpleItemItemsField = value;
-                    this.RaisePropertyChanged("DS_IncomePriseSimpleItemItems");
+                if ((object.ReferenceEquals(this.DS_IncomePriseSimpleItemField, value) != true)) {
+                    this.DS_IncomePriseSimpleItemField = value;
+                    this.RaisePropertyChanged("DS_IncomePriseSimpleItem");
                 }
             }
         }
