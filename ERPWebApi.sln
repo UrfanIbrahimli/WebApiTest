@@ -17,6 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.WebApi", "WebApi\ERP.We
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.JobRunner", "Adapters\ERP.JobRunner\ERP.JobRunner.csproj", "{2F7D975B-A59A-47B7-8062-3B0AF08EE5E7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3F6C0C0-75C0-4761-9E6C-86AFE8CC41B0} = {D3F6C0C0-75C0-4761-9E6C-86AFE8CC41B0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

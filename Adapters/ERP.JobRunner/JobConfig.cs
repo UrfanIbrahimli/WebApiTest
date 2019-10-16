@@ -15,7 +15,7 @@ namespace ERP.JobRunner
         {
             var schedulerFactory = new StdSchedulerFactory();
             var scheduler = schedulerFactory.GetScheduler();
-            AddJob<StockJob>(scheduler, TimeSpan.FromSeconds(15), DateTime.Now.AddHours(12.00));
+            AddJob<StockJob>(scheduler, TimeSpan.FromSeconds(15), DateTime.Now);
             scheduler.Start();
         }
 
