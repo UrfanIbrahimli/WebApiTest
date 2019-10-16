@@ -10,10 +10,6 @@ namespace ERP.JobRunner
     {
         static void Main(string[] args)
         {
-            //ServiceContainer serviceContainer = new ServiceContainer();
-            //IServiceLocator serviceLocator = new LightInjectServiceLocator(serviceContainer);
-            //ServiceLocator.SetLocatorProvider(() => serviceLocator);
-            //ServiceConfig.Register(serviceContainer);
 
 #if DEBUG
             var service = new JobService();
