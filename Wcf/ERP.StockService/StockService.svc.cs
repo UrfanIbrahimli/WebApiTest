@@ -13,8 +13,8 @@ namespace ERP.StockService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StockService.svc or StockService.svc.cs at the Solution Explorer and start debugging.
     public class StockService : IStockService
     {
-        string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
-        //string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
+        //string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
+        string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
         private readonly ILogger _logger;
         public StockService()
         {

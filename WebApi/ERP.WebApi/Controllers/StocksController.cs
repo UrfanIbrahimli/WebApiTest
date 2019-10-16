@@ -8,31 +8,19 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace ERP.WebApi.Controllers
 {
-    public class StocksController : ApiController
+    //81.21.85.119
+    public class StocksController : BaseController
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        StockServiceClient serviceClient = new StockServiceClient();
+        [ResponseType(typeof(void))]
         public IHttpActionResult Get()
         {
-
-            //81.21.85.119
-            //var client = new HttpClient();
-            //client.BaseAddress = new Uri("81.21.85.119");
-            //HttpResponseMessage responseMessage = await client.GetAsync("");
-            //string result = await responseMessage.Content.ReadAsStringAsync();
-
-            logger.Log(LogLevel.Info,"successfull");
-            var incomePrice_stockId_1 = serviceClient.GetIncomePriceList(1).ToList();
-            var incomePrice_stockId_2 = serviceClient.GetIncomePriceList(2).ToList();
-
-            var outCome_stock_1 = serviceClient.GetOutcomeList(1).ToList();
-            var outCome_stock_2 = serviceClient.GetOutcomeList(1).ToList();
-            var ok  = JsonConvert.SerializeObject(incomePrice_stockId_1);
-            return Ok(ok);
+            if (!Stocks())
+                return BadRequest();
+            return Ok();
         }
     }
 }
