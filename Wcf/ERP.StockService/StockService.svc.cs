@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,7 +15,9 @@ namespace ERP.StockService
     public class StockService : IStockService
     {
         //string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
-        string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
+        //string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
+
+        string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
         private readonly ILogger _logger;
         public StockService()
         {
