@@ -61,6 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ERP1.StockService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="JobConfig.cs" />
     <Compile Include="JobService.cs">
       <SubType>Component</SubType>
@@ -74,11 +79,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\ERP1.StockService\ERP.JobRunner.ERP1.StockService.DS_IncomePrice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ERP1.StockService\ERP.JobRunner.ERP1.StockService.DS_Outcome.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ERP1.StockService\StockService.wsdl" />
+    <None Include="Connected Services\ERP1.StockService\StockService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ERP1.StockService\StockService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ERP1.StockService\StockService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="NLog.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ERP1.StockService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ERP1.StockService\StockService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ERP1.StockService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ERP1.StockService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ERP1.StockService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
