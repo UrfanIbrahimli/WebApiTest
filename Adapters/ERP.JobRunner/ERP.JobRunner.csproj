@@ -33,11 +33,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.5.4.0\lib\net46\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.ServiceLocation, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.ServiceLocation.1.0.0.2\lib\net45\LightInject.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.6.7\lib\net45\NLog.dll</HintPath>
@@ -48,11 +63,18 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,7 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\ERP1.StockService\Reference.cs">
+    <Compile Include="Connected Services\StockService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -74,25 +96,27 @@
       <DependentUpon>JobService.cs</DependentUpon>
     </Compile>
     <Compile Include="Jobs\StockJob.cs" />
+    <Compile Include="Mapping\MapperConfig.cs" />
+    <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\DS_IncomePrice.cs" />
+    <Compile Include="Models\DS_IncomePriceItems.cs" />
+    <Compile Include="Models\DS_IncomePriseSimpleItemItems.cs" />
+    <Compile Include="Models\DS_Outcome.cs" />
+    <Compile Include="Models\DS_OutcomeItems.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ERP1.StockService\ERP.JobRunner.ERP1.StockService.DS_IncomePrice.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ERP1.StockService\ERP.JobRunner.ERP1.StockService.DS_Outcome.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ERP1.StockService\StockService.wsdl" />
-    <None Include="Connected Services\ERP1.StockService\StockService.xsd">
+    <None Include="Connected Services\StockService\StockService.wsdl" />
+    <None Include="Connected Services\StockService\StockService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ERP1.StockService\StockService1.xsd">
+    <None Include="Connected Services\StockService\StockService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ERP1.StockService\StockService2.xsd">
+    <None Include="Connected Services\StockService\StockService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="job_scheduling_data_2_0.xsd">
@@ -100,27 +124,36 @@
     </None>
     <None Include="NLog.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ERP.StockService.DS_IncomePrice.datasource" />
+    <None Include="Properties\DataSources\ERP.StockService.DS_Outcome.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ERP1.StockService\" />
+    <WCFMetadataStorage Include="Connected Services\StockService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ERP1.StockService\StockService.disco" />
+    <None Include="Connected Services\StockService\StockService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ERP1.StockService\configuration91.svcinfo" />
+    <None Include="Connected Services\StockService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ERP1.StockService\configuration.svcinfo" />
+    <None Include="Connected Services\StockService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ERP1.StockService\Reference.svcmap">
+    <None Include="Connected Services\StockService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Wcf\ERP.StockService\ERP.StockService.csproj">
+      <Project>{D3F6C0C0-75C0-4761-9E6C-86AFE8CC41B0}</Project>
+      <Name>ERP.StockService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
