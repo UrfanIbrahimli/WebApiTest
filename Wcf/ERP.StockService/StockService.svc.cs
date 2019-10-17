@@ -14,17 +14,15 @@ namespace ERP.StockService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StockService.svc or StockService.svc.cs at the Solution Explorer and start debugging.
     public class StockService : IStockService
     {
-        //string connectionString = "Server=DESKTOP-D40F8MT\\MSSQLSERVER2;Database=TutunZavodu;Trusted_Connection=True;";
-        //string connectionString = "Server=DESKTOP-6MMIBQE;Database=TutunZavodu;Trusted_Connection=True;";
-
         string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
+        int Id = Convert.ToInt32(ConfigurationManager.AppSettings["stockId"]);
         private readonly ILogger _logger;
         public StockService()
         {
             _logger = LogManager.GetCurrentClassLogger();
         }
         #region GetIncomePriceList
-        public List<DS_IncomePrice> GetIncomePriceList(int Id)
+        public List<DS_IncomePrice> GetIncomePriceList()
         {
             List<DS_IncomePrice> models = new List<DS_IncomePrice>();
             try
@@ -178,7 +176,7 @@ namespace ERP.StockService
 #endregion
 
         #region GetOutcomeList
-        public List<DS_Outcome> GetOutcomeList(int Id)
+        public List<DS_Outcome> GetOutcomeList()
         {
             List<DS_Outcome> models = new List<DS_Outcome>();
             try

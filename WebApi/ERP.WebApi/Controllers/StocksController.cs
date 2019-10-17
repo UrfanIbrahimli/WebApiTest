@@ -1,4 +1,4 @@
-﻿using ERP.WebApi.ErpStockService;
+﻿using ERP.WebApi.Models;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -15,12 +15,11 @@ namespace ERP.WebApi.Controllers
     //81.21.85.119
     public class StocksController : BaseController
     {
-        [ResponseType(typeof(void))]
-        public IHttpActionResult Get()
+        [HttpPost]
+        public IHttpActionResult SaveData([FromBody] CommonModel common)
         {
-            if (!Stocks())
-                return BadRequest();
-            return Ok();
+            Create(common);
+            return Ok(common);
         }
     }
 }

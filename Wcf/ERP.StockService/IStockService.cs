@@ -12,9 +12,9 @@ namespace ERP.StockService
     public interface IStockService
     {
         [OperationContract]
-        List<DS_IncomePrice> GetIncomePriceList(int Id);
+        List<DS_IncomePrice> GetIncomePriceList();
 
         [OperationContract]
-        List<DS_Outcome> GetOutcomeList(int Id);
+        List<DS_Outcome> GetOutcomeList();
     }
 }
