@@ -30,7 +30,8 @@ namespace ERP.StockService
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id";
+                    /*AND SendingStatus IS NULL*/
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id ";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -61,6 +62,8 @@ namespace ERP.StockService
                             OperationalDay = ReplaceNullDateTime(dataReader["OperationalDay"]),
                             DsPaymentTypeID = ReplaceNullDecimal(dataReader["DsPaymentTypeID"]),
                         };
+                        int incomePriceId = Convert.ToInt32(model.ID);
+                        IncomePriceUpdateStatus(incomePriceId);
                         model.DS_IncomePriceItems = GetIncomePriceItems(model.ID);
                         models.Add(model);
                     }
@@ -73,7 +76,7 @@ namespace ERP.StockService
                 _logger.Error($"GetIncomePriceList({string.Join(",", Id)}), Exception: {ex.Message}");
                 return models;
             }
-            
+
         }
 
 
@@ -137,7 +140,7 @@ namespace ERP.StockService
                 return models;
             }
 
-            
+
         }
 
         public DS_IncomePriseSimpleItemItems GetIncomePriseSimpleItemItems(decimal IdParent)
@@ -171,9 +174,20 @@ namespace ERP.StockService
                 _logger.Error($"GetIncomePriseSimpleItemItems({string.Join(",", IdParent)}), Exception: {ex.Message}");
                 return model;
             }
-           
+
         }
-#endregion
+
+        public void IncomePriceUpdateStatus(int Id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sqlQuery = String.Format("UPDATE CASPELERP.DS_IncomePrice SET SendingStatus = 1 WHERE ID IN ({0})", String.Join(",", Id));
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.ExecuteNonQuery();
+            }
+        }
+        #endregion
 
         #region GetOutcomeList
         public List<DS_Outcome> GetOutcomeList()
@@ -183,8 +197,9 @@ namespace ERP.StockService
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    //AND SendingStatus IS NULL
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id ";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -213,6 +228,8 @@ namespace ERP.StockService
                             RefAddressID = ReplaceNullDecimal(dataReader["RefAddressID"]),
                             StructID = ReplaceNullDecimal(dataReader["StructID"]),
                         };
+                        int outcomeId = Convert.ToInt32(model.ID);
+                        OutcomeUpdateStatus(outcomeId);
                         model.DS_OutcomeItems = GetOutcomeItems(model.ID);
                         models.Add(model);
                     }
@@ -225,7 +242,7 @@ namespace ERP.StockService
                 _logger.Error($"GetOutcomeList({string.Join(",", Id)}), Exception: {ex.Message}");
                 return models;
             }
-            
+
         }
 
         public List<DS_OutcomeItems> GetOutcomeItems(decimal OutcomeID)
@@ -277,7 +294,18 @@ namespace ERP.StockService
                 _logger.Error($"GetOutcomeItems({string.Join(",", OutcomeID)}), Exception: {ex.Message}");
                 return models;
             }
-            
+
+        }
+
+        public void OutcomeUpdateStatus(int Id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sqlQuery = String.Format("UPDATE CASPELERP.DS_Outcome SET SendingStatus = 1 WHERE ID IN ({0})", String.Join(",", Id));
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.ExecuteNonQuery();
+            }
         }
 
         #endregion
@@ -328,7 +356,7 @@ namespace ERP.StockService
             return DateTime.Parse(value.ToString());
         }
 
-       
+
 
         public byte[] ReplaceNullByte(object value)
         {
