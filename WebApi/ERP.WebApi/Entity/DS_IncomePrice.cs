@@ -1,14 +1,18 @@
-namespace ERP.WebApi.Models
+namespace ERP.WebApi.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
-    public partial class DS_Outcome
+    [Table("CASPELERP.DS_IncomePrice")]
+    public partial class DS_IncomePrice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DS_Outcome()
+        public DS_IncomePrice()
         {
-            DS_OutcomeItems = new HashSet<DS_OutcomeItems>();
+            DS_IncomePriceItems = new HashSet<DS_IncomePriceItems>();
         }
 
         public decimal ID { get; set; }
@@ -19,25 +23,33 @@ namespace ERP.WebApi.Models
 
         public decimal? BranchID { get; set; }
 
-        public decimal? CustomerID { get; set; }
+        public decimal? CurrencyID { get; set; }
+
+        public decimal CustomerID { get; set; }
 
         public decimal PhysicalPersonID { get; set; }
 
+        [StringLength(100)]
         public string ExternalDocNumber { get; set; }
 
         public DateTime? ExternalDocDate { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
-        public DateTime? OutcomeDate { get; set; }
+        public DateTime? IncomeDate { get; set; }
 
         public decimal? DS_StockID { get; set; }
 
-        public decimal? RefOutcomeTypeID { get; set; }
+        public decimal? RefIncomeTypeID { get; set; }
 
         public string Description { get; set; }
 
-        public decimal? CurrencyID { get; set; }
+        [StringLength(100)]
+        public string Contract { get; set; }
+
+        public DateTime? ContractDate { get; set; }
+
+        public DateTime? LastPaymentDate { get; set; }
 
         public DateTime? DocDueDate { get; set; }
 
@@ -45,11 +57,9 @@ namespace ERP.WebApi.Models
 
         public DateTime? OperationalDay { get; set; }
 
-        public decimal? RefAddressID { get; set; }
-
-        public decimal? StructID { get; set; }
+        public decimal? DsPaymentTypeID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DS_OutcomeItems> DS_OutcomeItems { get; set; }
+        public virtual ICollection<DS_IncomePriceItems> DS_IncomePriceItems { get; set; }
     }
 }

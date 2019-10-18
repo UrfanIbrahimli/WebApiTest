@@ -44,7 +44,7 @@ namespace ERP.JobRunner.Jobs
                 var commonContent = JsonConvert.SerializeObject(common);
 
                 var content = new StringContent(commonContent, Encoding.UTF8, "application/json");
-
+                //HttpResponseMessage response = await _client.GetAsync("api/stocks/");
                 HttpResponseMessage response = await _client.PostAsync("api/stocks/SaveData", content);
 
                 if (response.IsSuccessStatusCode)

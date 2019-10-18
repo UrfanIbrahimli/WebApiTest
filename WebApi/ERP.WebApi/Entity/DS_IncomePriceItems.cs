@@ -1,8 +1,12 @@
-namespace ERP.WebApi.Models
+namespace ERP.WebApi.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
 
+    [Table("CASPELERP.DS_IncomePriceItems")]
     public partial class DS_IncomePriceItems
     {
         public decimal ID { get; set; }
@@ -15,12 +19,14 @@ namespace ERP.WebApi.Models
 
         public decimal? Price { get; set; }
 
+        [StringLength(150)]
         public string SerialNumber { get; set; }
 
         public decimal? QualityID { get; set; }
 
         public string Description { get; set; }
 
+        [Column(TypeName = "image")]
         public byte[] Picture { get; set; }
 
         public decimal? VatID { get; set; }
@@ -51,15 +57,17 @@ namespace ERP.WebApi.Models
 
         public bool? HasWarranty { get; set; }
 
+        [StringLength(50)]
         public string WarrantyType { get; set; }
 
         public decimal? WarrantyMonth { get; set; }
 
+        [Column(TypeName = "ntext")]
         public string WarrantyDescription { get; set; }
 
+        [StringLength(50)]
         public string Code { get; set; }
 
-        public DS_IncomePrice DS_IncomePrice  { get; set; }
-        public DS_IncomePriseSimpleItemItems DS_IncomePriseSimpleItem { get; set; }
+        public virtual DS_IncomePrice DS_IncomePrice { get; set; }
     }
 }
