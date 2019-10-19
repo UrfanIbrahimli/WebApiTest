@@ -26,24 +26,24 @@ namespace ERP.WebApi.Controllers
                 var incomePriceList = common.dS_IncomePrices;
                 var outcomeList = common.dS_Outcomes;
 
-                //foreach (var incomePrice in incomePriceList)
-                //{
-                //    StockHelper.IncomePriceAdd(incomePrice);
-                //    foreach (var incomePriceItem in incomePrice.DS_IncomePriceItems)
-                //    {
-                //        //StockHelper.IncomePriceItemAdd(incomePriceItem, incomePrice.DS_StockID.Value);
-                //        StockHelper.IncomePriceSimpleItemItemAdd(incomePriceItem.DS_IncomePriseSimpleItem, incomePrice.DS_StockID.Value, incomePriceItem.ID);
-                //    }
-                //}
+                foreach (var incomePrice in incomePriceList)
+                {
+                    StockHelper.IncomePriceAdd(incomePrice);
+                    foreach (var incomePriceItem in incomePrice.DS_IncomePriceItems)
+                    {
+                        StockHelper.IncomePriceSimpleItemItemAdd(incomePriceItem.DS_IncomePriseSimpleItem, incomePrice.DS_StockID.Value, incomePriceItem.ID);
+                    }
+                }
 
                 foreach (var outcome in outcomeList)
                 {
                    
                     StockHelper.OutcomeAdd(outcome);
-                    foreach (var outcomeItem in outcome.DS_OutcomeItems)
-                    {
-                        StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
-                    }
+
+                    //foreach (var outcomeItem in outcome.DS_OutcomeItems)
+                    //{
+                    //   // StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
+                    //}
                 }
 
                 _logger.Info($"Create({string.Join(",", true)})");

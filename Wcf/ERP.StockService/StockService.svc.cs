@@ -351,7 +351,7 @@ namespace ERP.StockService
         {
             if (value == DBNull.Value)
             {
-                return DateTime.MinValue;
+                return DateTime.Now;
             }
             return DateTime.Parse(value.ToString());
         }
