@@ -97,15 +97,9 @@
     </Compile>
     <Compile Include="Jobs\StockJob.cs" />
     <Compile Include="Mapping\MapperConfig.cs" />
-    <Compile Include="Models\CommonModel.cs" />
-    <Compile Include="Models\DS_IncomePrice.cs" />
-    <Compile Include="Models\DS_IncomePriceItems.cs" />
-    <Compile Include="Models\DS_IncomePriseSimpleItemItems.cs" />
-    <Compile Include="Models\DS_Outcome.cs" />
-    <Compile Include="Models\DS_OutcomeItems.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceConfig.cs" />
+    <Compile Include="Mapping\ServiceConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -153,6 +147,10 @@
     <ProjectReference Include="..\..\Wcf\ERP.StockService\ERP.StockService.csproj">
       <Project>{D3F6C0C0-75C0-4761-9E6C-86AFE8CC41B0}</Project>
       <Name>ERP.StockService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\ERP.WebApi\ERP.WebApi.csproj">
+      <Project>{dfed7e8b-cae2-4810-89d8-b35fbe2b0961}</Project>
+      <Name>ERP.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

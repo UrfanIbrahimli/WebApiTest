@@ -1,4 +1,4 @@
-namespace ERP.JobRunner.Models
+namespace ERP.WebApi.Models
 {
     using System;
 

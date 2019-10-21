@@ -30,8 +30,7 @@ namespace ERP.StockService
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    /*AND SendingStatus IS NULL*/
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id ";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -197,9 +196,8 @@ namespace ERP.StockService
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    //AND SendingStatus IS NULL
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id ";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -282,6 +280,7 @@ namespace ERP.StockService
                             VHFDate = ReplaceNullDateTime(dataReader["VHFDate"]),
                             Code = ReplaceNullString(dataReader["Code"]),
                             CurrentWeight = ReplaceNullDecimal(dataReader["CurrentWeight"]),
+                            NewSerialNumber = ReplaceNullString(dataReader["NewSerialNumber"]),
                         };
                         models.Add(model);
                     }

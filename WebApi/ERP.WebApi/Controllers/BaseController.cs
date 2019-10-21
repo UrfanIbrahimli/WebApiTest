@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ERP.WebApi.Helpers;
+using ERP.WebApi.Models;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace ERP.WebApi.Controllers
         }
 
         [NonAction]
-        protected bool Create(ERP.JobRunner.Models.CommonModel common)
+        protected bool Create(CommonModel common)
         {
             try
             {
@@ -40,10 +41,10 @@ namespace ERP.WebApi.Controllers
                    
                     StockHelper.OutcomeAdd(outcome);
 
-                    //foreach (var outcomeItem in outcome.DS_OutcomeItems)
-                    //{
-                    //   // StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
-                    //}
+                    foreach (var outcomeItem in outcome.DS_OutcomeItems)
+                    {
+                         StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
+                    }
                 }
 
                 _logger.Info($"Create({string.Join(",", true)})");

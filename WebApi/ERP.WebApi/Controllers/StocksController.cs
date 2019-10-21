@@ -1,4 +1,4 @@
-﻿using ERP.JobRunner.Models;
+﻿using ERP.WebApi.Models;
 using System.Web.Http;
 
 namespace ERP.WebApi.Controllers

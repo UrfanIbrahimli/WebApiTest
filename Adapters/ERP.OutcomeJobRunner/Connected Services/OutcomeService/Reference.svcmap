@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="af668037-4ae6-4070-b3e5-7067050aef3c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63942/OutcomeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OutcomeService.xsd" MetadataType="Schema" ID="a0ca27e4-07a6-4f3a-ad14-32b61d7a5d30" SourceId="1" SourceUrl="http://localhost:63942/OutcomeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OutcomeService.disco" MetadataType="Disco" ID="c5634d74-35b1-4cb3-a235-644e83f23b98" SourceId="1" SourceUrl="http://localhost:63942/OutcomeService.svc?disco" />
+    <MetadataFile FileName="OutcomeService1.xsd" MetadataType="Schema" ID="69f5a031-46ad-41d7-929c-94664af7361f" SourceId="1" SourceUrl="http://localhost:63942/OutcomeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OutcomeService2.xsd" MetadataType="Schema" ID="2d528df2-57de-458c-bebf-03b03b6b47a8" SourceId="1" SourceUrl="http://localhost:63942/OutcomeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OutcomeService.wsdl" MetadataType="Wsdl" ID="fec3b5bc-d6dc-4472-a0b8-7163ef8be031" SourceId="1" SourceUrl="http://localhost:63942/OutcomeService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
