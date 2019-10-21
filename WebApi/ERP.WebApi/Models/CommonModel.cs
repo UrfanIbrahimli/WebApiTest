@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ERP.JobRunner.Models
+namespace ERP.WebApi.Models
 {
     public class CommonModel
     {

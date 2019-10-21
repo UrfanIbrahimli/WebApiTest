@@ -13,8 +13,8 @@ namespace ERP.WebApi
         {
             AllowNullCollections = true;
             AllowNullDestinationValues = true;
-            CreateMap<ERP.JobRunner.Models.DS_IncomePrice, ERP.WebApi.Entity.DS_IncomePrice>().ReverseMap();
-            CreateMap<ERP.JobRunner.Models.DS_Outcome, ERP.WebApi.Entity.DS_Outcome>().ReverseMap();
+            CreateMap<Models.DS_IncomePrice, Entity.DS_IncomePrice>().ReverseMap();
+            CreateMap<Models.DS_Outcome, Entity.DS_Outcome>().ReverseMap();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ERP.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace ERP.JobRunner.Mapping
         {
             AllowNullCollections = true;
             AllowNullDestinationValues = true;
-            CreateMap<ERP.StockService.DS_IncomePrice, ERP.JobRunner.Models.DS_IncomePrice>().ReverseMap();
-            CreateMap<ERP.StockService.DS_Outcome, ERP.JobRunner.Models.DS_Outcome>().ReverseMap();
+            CreateMap<ERP.StockService.DS_IncomePrice, DS_IncomePrice>().ReverseMap();
+            CreateMap<ERP.StockService.DS_Outcome, DS_Outcome>().ReverseMap();
         }
     }
 }

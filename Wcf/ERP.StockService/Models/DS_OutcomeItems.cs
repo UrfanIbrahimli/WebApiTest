@@ -43,6 +43,7 @@ namespace ERP.StockService
         public string Code { get; set; }
 
         public decimal? CurrentWeight { get; set; }
+        public string NewSerialNumber { get; set; }
 
         public virtual DS_Outcome DS_Outcome { get; set; }
     }

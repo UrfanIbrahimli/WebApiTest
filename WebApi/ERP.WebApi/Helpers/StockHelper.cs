@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ERP.WebApi.Models;
 using ERP.WebApi.Response;
 using NLog;
 using System;
@@ -11,7 +12,7 @@ namespace ERP.WebApi.Helpers
     public static class StockHelper
     {
         private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
-        public static ActionResponse IncomePriceAdd(ERP.JobRunner.Models.DS_IncomePrice dS_IncomePrice)
+        public static ActionResponse IncomePriceAdd(DS_IncomePrice dS_IncomePrice)
         {
             string Id = Convert.ToInt32(dS_IncomePrice.DS_StockID.Value) + "" + Convert.ToInt32(dS_IncomePrice.ID);
             dS_IncomePrice.ID = Convert.ToDecimal(Id);
@@ -20,15 +21,16 @@ namespace ERP.WebApi.Helpers
             {
                 string DS_IncomePriceID = Convert.ToInt32(dS_IncomePrice.DS_StockID) + "" + Convert.ToInt32(item.DS_IncomePriceID);
                 string Idd = Convert.ToInt32(dS_IncomePrice.DS_StockID) + "" + Convert.ToInt32(item.ID);
+                item.ID = Convert.ToDecimal(Idd);
             }
 
             try
             {
                 var ctx = new MainDataContext();
-                var model = Mapper.Map<ERP.WebApi.Entity.DS_IncomePrice>(dS_IncomePrice);
+                var model = Mapper.Map<Entity.DS_IncomePrice>(dS_IncomePrice);
                 using (var transaction = ctx.Database.BeginTransaction())
                 {
-                    ctx.Set<ERP.WebApi.Entity.DS_IncomePrice>().Add(model);
+                    ctx.Set<Entity.DS_IncomePrice>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
                     _logger.Info($"Save({string.Join(",", dS_IncomePrice)})");
@@ -44,7 +46,7 @@ namespace ERP.WebApi.Helpers
 
         
 
-        public static ActionResponse IncomePriceSimpleItemItemAdd(ERP.JobRunner.Models.DS_IncomePriseSimpleItemItems dS_IncomePriseSimpleItemItems, decimal stockId, decimal incomePriceItemId)
+        public static ActionResponse IncomePriceSimpleItemItemAdd(DS_IncomePriseSimpleItemItems dS_IncomePriseSimpleItemItems, decimal stockId, decimal incomePriceItemId)
         {
             string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_IncomePriseSimpleItemItems.ID);
             dS_IncomePriseSimpleItemItems.ID = Convert.ToDecimal(Id);
@@ -53,10 +55,10 @@ namespace ERP.WebApi.Helpers
             try
             {
                 var ctx = new MainDataContext();
-                var model = Mapper.Map<ERP.WebApi.Entity.DS_IncomePriseSimpleItemItems>(dS_IncomePriseSimpleItemItems);
+                var model = Mapper.Map<Entity.DS_IncomePriseSimpleItemItems>(dS_IncomePriseSimpleItemItems);
                 using (var transaction = ctx.Database.BeginTransaction())
                 {
-                    ctx.Set<ERP.WebApi.Entity.DS_IncomePriseSimpleItemItems>().Add(model);
+                    ctx.Set<Entity.DS_IncomePriseSimpleItemItems>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
                     _logger.Info($"Save({string.Join(",", dS_IncomePriseSimpleItemItems)})");
@@ -70,26 +72,26 @@ namespace ERP.WebApi.Helpers
             }
         }
 
-        public static ActionResponse OutcomeAdd(ERP.JobRunner.Models.DS_Outcome dS_Outcome)
+        public static ActionResponse OutcomeAdd(DS_Outcome dS_Outcome)
         {
             string Id = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(dS_Outcome.ID);
             dS_Outcome.ID = Convert.ToDecimal(Id);
 
-            foreach (var item in dS_Outcome.DS_OutcomeItems)
-            {
-                string Idd = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(item.ID);
-                item.ID = Convert.ToDecimal(Idd);
-                item.DS_OutcomeID = Convert.ToDecimal(Id);
-                item.QualityID = Convert.ToDecimal(5);
-            }
+            //foreach (var item in dS_Outcome.DS_OutcomeItems)
+            //{
+            //    string Idd = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(item.ID);
+            //    item.ID = Convert.ToDecimal(Idd);
+            //    item.DS_OutcomeID = Convert.ToDecimal(Id);
+            //    item.QualityID = Convert.ToDecimal(5);
+            //}
 
             try
             {
                 var ctx = new MainDataContext();
-                var model = Mapper.Map<ERP.WebApi.Entity.DS_Outcome>(dS_Outcome);
+                var model = Mapper.Map<Entity.DS_Outcome>(dS_Outcome);
                 using (var transaction = ctx.Database.BeginTransaction())
                 {
-                    ctx.Set<ERP.WebApi.Entity.DS_Outcome>().Add(model);
+                    ctx.Set<Entity.DS_Outcome>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
                     _logger.Info($"Save({string.Join(",", dS_Outcome)})");
@@ -103,37 +105,33 @@ namespace ERP.WebApi.Helpers
             }
         }
 
+        public static ActionResponse OutcomeItemAdd(DS_OutcomeItems dS_OutcomeItems, decimal stockId)
+        {
+            string outcomeId = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.DS_OutcomeID);
+            string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.ID);
 
+            dS_OutcomeItems.ID = Convert.ToDecimal(Id);
+            dS_OutcomeItems.DS_OutcomeID = Convert.ToDecimal(outcomeId);
 
-
-
-        //public static ActionResponse OutcomeItemAdd(ERP.JobRunner.Models.DS_OutcomeItems dS_OutcomeItems, decimal stockId)
-        //{
-        //    string outcomeId = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.DS_OutcomeID);
-        //    string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.ID);
-
-        //    dS_OutcomeItems.ID = Convert.ToDecimal(Id);
-        //    dS_OutcomeItems.DS_OutcomeID = Convert.ToDecimal(outcomeId);
-
-        //    try
-        //    {
-        //        var ctx = new MainDataContext();
-        //        var model = Mapper.Map<ERP.WebApi.Entity.DS_OutcomeItems>(dS_OutcomeItems);
-        //        using (var transaction = ctx.Database.BeginTransaction())
-        //        {
-        //            ctx.Set<ERP.WebApi.Entity.DS_OutcomeItems>().Add(model);
-        //            var result = ctx.SaveChanges();
-        //            transaction.Commit();
-        //            _logger.Info($"Save({string.Join(",", dS_OutcomeItems)})");
-        //            return ActionResponse.Succeed();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.Error($"Save({string.Join(",", dS_OutcomeItems)}), Exception: {ex.Message}");
-        //        return ActionResponse.Failure(ex.Message);
-        //    }
-        //}
+            try
+            {
+                var ctx = new MainDataContext();
+                var model = Mapper.Map<Entity.DS_OutcomeItems>(dS_OutcomeItems);
+                using (var transaction = ctx.Database.BeginTransaction())
+                {
+                    ctx.Set<Entity.DS_OutcomeItems>().Add(model);
+                    var result = ctx.SaveChanges();
+                    transaction.Commit();
+                    _logger.Info($"Save({string.Join(",", dS_OutcomeItems)})");
+                    return ActionResponse.Succeed();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Save({string.Join(",", dS_OutcomeItems)}), Exception: {ex.Message}");
+                return ActionResponse.Failure(ex.Message);
+            }
+        }
 
 
 

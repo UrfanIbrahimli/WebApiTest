@@ -1,5 +1,4 @@
-﻿using ERP.JobRunner.Models;
-using NLog;
+﻿using NLog;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using AutoMapper;
+using ERP.WebApi.Models;
 
 namespace ERP.JobRunner.Jobs
 {
