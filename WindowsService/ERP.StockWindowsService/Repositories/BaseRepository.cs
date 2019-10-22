@@ -5,8 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using ERP.StockWindowsService.Models;
-using NLog;
 
 namespace ERP.StockWindowsService.Repositories
 {
@@ -14,10 +14,10 @@ namespace ERP.StockWindowsService.Repositories
     {
         string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
         int Id = Convert.ToInt32(ConfigurationManager.AppSettings["stockId"]);
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         public BaseRepository()
         {
-            _logger = LogManager.GetCurrentClassLogger();
+            _logger = LogManager.GetLogger<BaseRepository>();
         }
         #region GetIncomePriceList
         public List<DS_IncomePrice> GetIncomePriceList()
@@ -27,8 +27,9 @@ namespace ERP.StockWindowsService.Repositories
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    /* AND SendingStatus = 0*/
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id AND SendingStatus = 0";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id ";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -194,8 +195,9 @@ namespace ERP.StockWindowsService.Repositories
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    //AND SendingStatus = 0
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id AND SendingStatus = 0";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
