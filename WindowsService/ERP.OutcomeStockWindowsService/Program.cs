@@ -1,10 +1,14 @@
-﻿using Common.Logging;
-using LightInject;
+﻿using LightInject;
 using LightInject.ServiceLocation;
 using Microsoft.Practices.ServiceLocation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.ServiceProcess;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ERP.StockWindowsService
+namespace ERP.OutcomeStockWindowsService
 {
     static class Program
     {
@@ -17,18 +21,13 @@ namespace ERP.StockWindowsService
             IServiceLocator serviceLocator = new LightInjectServiceLocator(serviceContainer);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
             ServiceConfig.Register(serviceContainer);
+
 #if DEBUG
-            var service = new RegionService();
+            var service = new CenterStockService();
             service.OnDebug();
             System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
 #else
-            ServiceBase[] ServiceToRun;
-            ServiceToRun = new ServiceBase[]
-            {
-                new RegionService()
-            };
-            ServiceBase.Run(ServiceToRun);
-            //ServiceBase.Run(new RegionService());
+            ServiceBase.Run(new CenterStockService());
 #endif
         }
     }

@@ -1,50 +1,40 @@
 ﻿using AutoMapper;
-using Common.Logging;
-using ERP.StockWindowsService.Repositories;
-using ERP.WebApi.Models;
+using ERP.OutcomeStockWindowsService.Repositories;
+using ERP.OutcomeWebApi.Models;
 using Newtonsoft.Json;
+using NLog;
 using Quartz;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ERP.StockWindowsService.Jobs
+namespace ERP.OutcomeStockWindowsService.Jobs
 {
-    public class StockInOutJob : IJob
+    public class OutcomeJob : IJob
     {
         private readonly HttpClient _client;
-        private readonly ILog _logger;
+        private readonly ILogger _logger;
         private readonly BaseRepository _serviceClient;
-        public StockInOutJob()
+        public OutcomeJob()
         {
             _client = new HttpClient();
-            _logger = LogManager.GetLogger<StockInOutJob>();
+            _logger = LogManager.GetCurrentClassLogger();
             _serviceClient = new BaseRepository();
-            _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["apiUrl"]);
+            _client.BaseAddress = new Uri("http://localhost:64297/");
         }
         public async void Execute(IJobExecutionContext context)
         {
             try
             {
-                var incomeStock = _serviceClient.GetIncomePriceList().ToList();
                 var outcomeStock = _serviceClient.GetOutcomeList().ToList();
-                var incomeList = Mapper.Map<List<DS_IncomePrice>>(incomeStock);
                 var outcomelist = Mapper.Map<List<DS_Outcome>>(outcomeStock);
-
-                var common = new CommonModel()
-                {
-                    dS_IncomePrices = incomeList,
-                    dS_Outcomes = outcomelist
-                };
-
-                var commonContent = JsonConvert.SerializeObject(common);
+                var commonContent = JsonConvert.SerializeObject(outcomelist);
 
                 var content = new StringContent(commonContent, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _client.PostAsync("api/stocks/SaveData", content);
+                HttpResponseMessage response = await _client.PostAsync("api/incomeprices/IncomePrice", content);
 
                 if (response.IsSuccessStatusCode)
                 {
