@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Common.Logging;
 using ERP.OutcomeStockWindowsService.Models;
-using NLog;
 
 namespace ERP.OutcomeStockWindowsService.Repositories
 {
@@ -15,10 +12,10 @@ namespace ERP.OutcomeStockWindowsService.Repositories
 
         string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
         int Id = Convert.ToInt32(ConfigurationManager.AppSettings["stockId"]);
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         public BaseRepository()
         {
-            _logger = LogManager.GetCurrentClassLogger();
+            _logger = LogManager.GetLogger<BaseRepository>();
         }
 
         #region GetOutcomeList

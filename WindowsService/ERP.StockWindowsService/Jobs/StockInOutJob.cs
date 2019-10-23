@@ -57,7 +57,8 @@ namespace ERP.StockWindowsService.Jobs
             }
             catch (Exception ex)
             {
-                _logger.Error($"Execute({string.Join(",", context)}), Exception: {ex.Message}");
+                _logger.Error($"Execute({string.Join(",", new { context.JobDetail,context.Result})}), Exception: {ex.Message}");
+                _logger.Error("ExceptionMain", ex);
             }
 
         }

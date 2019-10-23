@@ -14,6 +14,8 @@ namespace ERP.StockWindowsService.Repositories
     {
         string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
         int Id = Convert.ToInt32(ConfigurationManager.AppSettings["stockId"]);
+        int IncomeStatusId = Convert.ToInt32(ConfigurationManager.AppSettings["IncomeStatusId"]);
+        int OutcomeStatusId = Convert.ToInt32(ConfigurationManager.AppSettings["OutcomeStatusId"]);
         private readonly ILog _logger;
         public BaseRepository()
         {
@@ -29,10 +31,11 @@ namespace ERP.StockWindowsService.Repositories
                 {
                     /* AND SendingStatus = 0*/
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id ";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
+                    command.Parameters.AddWithValue("@StatusId", IncomeStatusId);
                     SqlDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {
@@ -197,10 +200,11 @@ namespace ERP.StockWindowsService.Repositories
                 {
                     //AND SendingStatus = 0
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id";
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
+                    command.Parameters.AddWithValue("@StatusId", OutcomeStatusId);
                     SqlDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
                     {

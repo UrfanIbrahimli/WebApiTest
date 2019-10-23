@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using Common.Logging;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ERP.OutcomeStockWindowsService
 {
     partial class CenterStockService : ServiceBase
     {
+        private readonly ILog _logger = LogManager.GetLogger<CenterStockService>();
         public CenterStockService()
         {
             InitializeComponent();
@@ -19,17 +13,19 @@ namespace ERP.OutcomeStockWindowsService
 
         public void OnDebug()
         {
+            _logger.Info($"OnDebug({string.Join(",", "OnDebug")})");
             OnStart(null);
         }
 
         protected override void OnStart(string[] args)
         {
+            _logger.Info($"OnStart({string.Join(",", "Start")})");
             JobConfig.Start();
         }
 
         protected override void OnStop()
         {
-            // TODO: Add code here to perform any tear-down necessary to stop your service.
+            _logger.Info($"OnStop({string.Join(",", "Stop")})");
         }
     }
 }
