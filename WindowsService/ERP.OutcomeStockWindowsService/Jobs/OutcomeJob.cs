@@ -1,29 +1,29 @@
 ﻿using AutoMapper;
+using Common.Logging;
 using ERP.OutcomeStockWindowsService.Repositories;
 using ERP.OutcomeWebApi.Models;
 using Newtonsoft.Json;
-using NLog;
 using Quartz;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ERP.OutcomeStockWindowsService.Jobs
 {
     public class OutcomeJob : IJob
     {
         private readonly HttpClient _client;
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         private readonly BaseRepository _serviceClient;
         public OutcomeJob()
         {
             _client = new HttpClient();
-            _logger = LogManager.GetCurrentClassLogger();
+            _logger = LogManager.GetLogger<OutcomeJob>();
             _serviceClient = new BaseRepository();
-            _client.BaseAddress = new Uri("http://localhost:64297/");
+            _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["apiUrl"]);
         }
         public async void Execute(IJobExecutionContext context)
         {

@@ -3,6 +3,7 @@ using Quartz;
 using Quartz.Impl;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,10 @@ namespace ERP.OutcomeStockWindowsService
     {
         public static void Start()
         {
+            int second = Convert.ToInt32(ConfigurationManager.AppSettings["Seconds"]);
             var schedulerFactory = new StdSchedulerFactory();
             var scheduler = schedulerFactory.GetScheduler();
-            AddJob<OutcomeJob>(scheduler, TimeSpan.FromSeconds(600), DateTime.Now);
+            AddJob<OutcomeJob>(scheduler, TimeSpan.FromSeconds(second), DateTime.Now);
             scheduler.Start();
         }
 
