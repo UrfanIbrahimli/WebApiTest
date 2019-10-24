@@ -144,10 +144,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Wcf\ERP.StockService\ERP.StockService.csproj">
-      <Project>{D3F6C0C0-75C0-4761-9E6C-86AFE8CC41B0}</Project>
-      <Name>ERP.StockService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\WebApi\ERP.WebApi\ERP.WebApi.csproj">
       <Project>{dfed7e8b-cae2-4810-89d8-b35fbe2b0961}</Project>
       <Name>ERP.WebApi</Name>
