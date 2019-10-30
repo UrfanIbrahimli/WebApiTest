@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Common.Logging;
 using ERP.WebApi.Models;
 using ERP.WebApi.Response;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ using System.Web;
 
 namespace ERP.WebApi.Helpers
 {
-    public static class StockHelper
+    public class StockHelper
     {
-        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILog _logger = LogManager.GetLogger<StockHelper>();
         public static ActionResponse IncomePriceAdd(DS_IncomePrice dS_IncomePrice)
         {
             string Id = Convert.ToInt32(dS_IncomePrice.DS_StockID.Value) + "" + Convert.ToInt32(dS_IncomePrice.ID);
@@ -33,13 +33,13 @@ namespace ERP.WebApi.Helpers
                     ctx.Set<Entity.DS_IncomePrice>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
-                    _logger.Info($"Save({string.Join(",", dS_IncomePrice)})");
+                    _logger.Info($"Save({string.Join(",", dS_IncomePrice.ID)})");
                     return ActionResponse.Succeed();
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error($"Save({string.Join(",", dS_IncomePrice)}), Exception: {ex.Message}");
+                _logger.Error($"Save({string.Join(",", dS_IncomePrice.ID)}), Exception: {ex}");
                 return ActionResponse.Failure(ex.Message);
             }
         }
@@ -61,13 +61,13 @@ namespace ERP.WebApi.Helpers
                     ctx.Set<Entity.DS_IncomePriseSimpleItemItems>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
-                    _logger.Info($"Save({string.Join(",", dS_IncomePriseSimpleItemItems)})");
+                    _logger.Info($"Save({string.Join(",", dS_IncomePriseSimpleItemItems.ID)})");
                     return ActionResponse.Succeed();
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error($"Save({string.Join(",", dS_IncomePriseSimpleItemItems)}), Exception: {ex.Message}");
+                _logger.Error($"Save({string.Join(",", dS_IncomePriseSimpleItemItems.ID)}), Exception: {ex}");
                 return ActionResponse.Failure(ex.Message);
             }
         }
@@ -94,13 +94,13 @@ namespace ERP.WebApi.Helpers
                     ctx.Set<Entity.DS_Outcome>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
-                    _logger.Info($"Save({string.Join(",", dS_Outcome)})");
+                    _logger.Info($"Save({string.Join(",", dS_Outcome.ID)})");
                     return ActionResponse.Succeed();
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error($"Save({string.Join(",", dS_Outcome)}), Exception: {ex.Message}");
+                _logger.Error($"Save({string.Join(",", dS_Outcome.ID)}), Exception: {ex}");
                 return ActionResponse.Failure(ex.Message);
             }
         }
@@ -111,6 +111,7 @@ namespace ERP.WebApi.Helpers
             string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.ID);
 
             dS_OutcomeItems.ID = Convert.ToDecimal(Id);
+            dS_OutcomeItems.QualityID = 5;
             dS_OutcomeItems.DS_OutcomeID = Convert.ToDecimal(outcomeId);
 
             try
@@ -122,13 +123,13 @@ namespace ERP.WebApi.Helpers
                     ctx.Set<Entity.DS_OutcomeItems>().Add(model);
                     var result = ctx.SaveChanges();
                     transaction.Commit();
-                    _logger.Info($"Save({string.Join(",", dS_OutcomeItems)})");
+                    _logger.Info($"Save({string.Join(",", dS_OutcomeItems.ID)})");
                     return ActionResponse.Succeed();
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error($"Save({string.Join(",", dS_OutcomeItems)}), Exception: {ex.Message}");
+                _logger.Error($"Save({string.Join(",", dS_OutcomeItems.ID)}), Exception: {ex}");
                 return ActionResponse.Failure(ex.Message);
             }
         }

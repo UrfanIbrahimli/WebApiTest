@@ -31,7 +31,7 @@ namespace ERP.StockWindowsService.Repositories
                 {
                     /* AND SendingStatus = 0*/
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
+                    string sqlQuery = @"SELECT TOP(100) * FROM CASPELERP.DS_IncomePrice WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);
@@ -200,7 +200,7 @@ namespace ERP.StockWindowsService.Repositories
                 {
                     //AND SendingStatus = 0
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
+                    string sqlQuery = @"SELECT TOP(100) * FROM CASPELERP.DS_Outcome WHERE DS_StockID = @Id AND StatusID = @StatusId AND SendingStatus = 0";
 
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@Id", Id);

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Common.Logging;
 using ERP.WebApi.Helpers;
 using ERP.WebApi.Models;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ namespace ERP.WebApi.Controllers
 {
     public class BaseController : ApiController
     {
-        private readonly ILogger _logger;
+        private readonly ILog _logger;
         public BaseController()
         {
-            _logger = LogManager.GetCurrentClassLogger();
+            _logger = LogManager.GetLogger<BaseController>();
         }
 
         [NonAction]
@@ -27,25 +27,32 @@ namespace ERP.WebApi.Controllers
                 var incomePriceList = common.dS_IncomePrices;
                 var outcomeList = common.dS_Outcomes;
 
-                foreach (var incomePrice in incomePriceList)
+                if(incomePriceList.Count() != 0)
                 {
-                    StockHelper.IncomePriceAdd(incomePrice);
-                    foreach (var incomePriceItem in incomePrice.DS_IncomePriceItems)
+                    foreach (var incomePrice in incomePriceList)
                     {
-                        StockHelper.IncomePriceSimpleItemItemAdd(incomePriceItem.DS_IncomePriseSimpleItem, incomePrice.DS_StockID.Value, incomePriceItem.ID);
+                        StockHelper.IncomePriceAdd(incomePrice);
+                        foreach (var incomePriceItem in incomePrice.DS_IncomePriceItems)
+                        {
+                            StockHelper.IncomePriceSimpleItemItemAdd(incomePriceItem.DS_IncomePriseSimpleItem, incomePrice.DS_StockID.Value, incomePriceItem.ID);
+                        }
                     }
                 }
 
-                foreach (var outcome in outcomeList)
+                if (outcomeList.Count() != 0)
                 {
-                   
-                    StockHelper.OutcomeAdd(outcome);
-
-                    foreach (var outcomeItem in outcome.DS_OutcomeItems)
+                    foreach (var outcome in outcomeList)
                     {
-                         StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
+
+                        StockHelper.OutcomeAdd(outcome);
+
+                        foreach (var outcomeItem in outcome.DS_OutcomeItems)
+                        {
+                            StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
+                        }
                     }
                 }
+                
 
                 _logger.Info($"Create({string.Join(",", true)})");
                 return true;
