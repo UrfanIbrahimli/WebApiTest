@@ -19,8 +19,8 @@ namespace ERP.GetOutcomeWebApi.Controllers
         [HttpGet]
         public IHttpActionResult GetOutcome()
         {
-            var x = _baseRepository.GetOutcomeList();
-            return Ok(x);
+            var result = _baseRepository.GetOutcomeList();
+            return Ok(result);
         }
     }
 }

@@ -1,0 +1,2 @@
+2019-10-29 16:32:43.6327 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeList(7,9), Exception: ExecuteReader: Connection property has not been initialized. 
+2019-10-29 16:34:29.6185 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeList(7,9), Exception: ExecuteReader: Connection property has not been initialized. 

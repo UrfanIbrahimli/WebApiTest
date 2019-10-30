@@ -284,7 +284,7 @@ namespace ERP.StockWindowsService.Repositories
                             VHFDate = ReplaceNullDateTime(dataReader["VHFDate"]),
                             Code = ReplaceNullString(dataReader["Code"]),
                             CurrentWeight = ReplaceNullDecimal(dataReader["CurrentWeight"]),
-                            NewSerialNumber = ReplaceNullString(dataReader["NewSerialNumber"]),
+                            //NewSerialNumber = ReplaceNullString(dataReader["NewSerialNumber"]),
                         };
                         models.Add(model);
                     }

@@ -14,14 +14,15 @@ namespace ERP.RegionStockWindowsService.Helpers
         private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         public static ActionResponse IncomePriceAdd(DS_IncomePrice dS_IncomePrice)
         {
-            string Id = 7 + "" + Convert.ToInt32(dS_IncomePrice.ID);
-            dS_IncomePrice.ID = Convert.ToDecimal(Id);
-            dS_IncomePrice.StatusID = 20284;
+            //string Id = 7 + "" + Convert.ToInt32(dS_IncomePrice.ID);
+            int Id = Convert.ToInt32(dS_IncomePrice.ID);
+            dS_IncomePrice.ID = Id;
+            dS_IncomePrice.StatusID = 20174;
             dS_IncomePrice.OwnerID = 12;
             dS_IncomePrice.BranchID = 1;
             dS_IncomePrice.CurrencyID = 6;
             dS_IncomePrice.CustomerID = 38375;
-            dS_IncomePrice.ExternalDocNumber = Id;
+            dS_IncomePrice.ExternalDocNumber = Id.ToString();
             dS_IncomePrice.PhysicalPersonID = 38375;
             dS_IncomePrice.DS_StockID = 7;
             dS_IncomePrice.RefIncomeTypeID = 1;
