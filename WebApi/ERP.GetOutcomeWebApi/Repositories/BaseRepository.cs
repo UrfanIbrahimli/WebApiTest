@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace ERP.GetOutcomeWebApi.Repositories
 {
@@ -11,7 +12,7 @@ namespace ERP.GetOutcomeWebApi.Repositories
     {
 
         string connectionString = ConfigurationManager.ConnectionStrings["ErpStockConString"].ConnectionString;
-        int Id = Convert.ToInt32(ConfigurationManager.AppSettings["stockId"]);
+        string Id = ConfigurationManager.AppSettings["stockId"];
         private readonly ILog _logger;
         public BaseRepository()
         {
@@ -21,29 +22,41 @@ namespace ERP.GetOutcomeWebApi.Repositories
         #region GetOutcomeList
         public List<DS_Outcome> GetOutcomeList()
         {
+            List<string> Ids = Id.Split(',').ToList();
+
+            string[] paramNames = Ids.Select(
+                (s, i) => "@Id" + i.ToString()
+            ).ToArray();
+
+            string inClause = string.Join(", ", paramNames);
+
             List<DS_Outcome> models = new List<DS_Outcome>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID != @Id AND RefOutcomeTypeID = 14 AND SendingStatus = 0";
-
-                    SqlCommand command = new SqlCommand(sqlQuery, connection);
-                    command.Parameters.AddWithValue("@Id", Id);
-                    SqlDataReader dataReader = command.ExecuteReader();
-                    while (dataReader.Read())
+                    string sqlQuery = @"SELECT * FROM CASPELERP.DS_Outcome WHERE DS_StockID NOT IN ({0}) AND RefOutcomeTypeID = 14 AND SendingStatus = 0";
+                    using (SqlCommand command = new SqlCommand(string.Format(sqlQuery, inClause),connection))
                     {
-                        DS_Outcome model = new DS_Outcome
+                        for (int i = 0; i < paramNames.Length; i++)
                         {
-                            ID = ReplaceNullDecimal(dataReader["ID"]),
-                            ExternalDocDate = ReplaceNullDateTime(dataReader["ExternalDocDate"]),
-                            CreateDate = ReplaceNullDateTime(dataReader["CreateDate"]),
-                        };
-                        int outcomeId = Convert.ToInt32(model.ID);
-                        OutcomeUpdateStatus(outcomeId);
-                        model.DS_OutcomeItems = GetOutcomeItems(model.ID);
-                        models.Add(model);
+                            command.Parameters.AddWithValue(paramNames[i], Ids[i]);
+                        }
+                        SqlDataReader dataReader = command.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            DS_Outcome model = new DS_Outcome
+                            {
+                                ID = ReplaceNullDecimal(dataReader["ID"]),
+                                ExternalDocDate = ReplaceNullDateTime(dataReader["ExternalDocDate"]),
+                                CreateDate = ReplaceNullDateTime(dataReader["CreateDate"]),
+                            };
+                            int outcomeId = Convert.ToInt32(model.ID);
+                            OutcomeUpdateStatus(outcomeId);
+                            model.DS_OutcomeItems = GetOutcomeItems(model.ID);
+                            models.Add(model);
+                        }
                     }
                     _logger.Info($"GetOutcomeList({string.Join(",", Id)})");
                     return models;
