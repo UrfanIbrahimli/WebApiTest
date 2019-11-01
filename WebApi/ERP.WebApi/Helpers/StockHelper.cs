@@ -77,13 +77,13 @@ namespace ERP.WebApi.Helpers
             string Id = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(dS_Outcome.ID);
             dS_Outcome.ID = Convert.ToDecimal(Id);
 
-            //foreach (var item in dS_Outcome.DS_OutcomeItems)
-            //{
-            //    string Idd = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(item.ID);
-            //    item.ID = Convert.ToDecimal(Idd);
-            //    item.DS_OutcomeID = Convert.ToDecimal(Id);
-            //    item.QualityID = Convert.ToDecimal(5);
-            //}
+            foreach (var item in dS_Outcome.DS_OutcomeItems)
+            {
+                string Idd = Convert.ToInt32(dS_Outcome.DS_StockID.Value) + "" + Convert.ToInt32(item.ID);
+                item.ID = Convert.ToDecimal(Idd);
+                item.DS_OutcomeID = Convert.ToDecimal(Id);
+                item.QualityID = Convert.ToDecimal(5);
+            }
 
             try
             {
@@ -105,34 +105,34 @@ namespace ERP.WebApi.Helpers
             }
         }
 
-        public static ActionResponse OutcomeItemAdd(DS_OutcomeItems dS_OutcomeItems, decimal stockId)
-        {
-            string outcomeId = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.DS_OutcomeID);
-            string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.ID);
+        //public static ActionResponse OutcomeItemAdd(DS_OutcomeItems dS_OutcomeItems, decimal stockId)
+        //{
+        //    string outcomeId = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.DS_OutcomeID);
+        //    string Id = Convert.ToInt32(stockId) + "" + Convert.ToInt32(dS_OutcomeItems.ID);
 
-            dS_OutcomeItems.ID = Convert.ToDecimal(Id);
-            dS_OutcomeItems.QualityID = 5;
-            dS_OutcomeItems.DS_OutcomeID = Convert.ToDecimal(outcomeId);
+        //    dS_OutcomeItems.ID = Convert.ToDecimal(Id);
+        //    dS_OutcomeItems.QualityID = 5;
+        //    dS_OutcomeItems.DS_OutcomeID = Convert.ToDecimal(outcomeId);
 
-            try
-            {
-                var ctx = new MainDataContext();
-                var model = Mapper.Map<Entity.DS_OutcomeItems>(dS_OutcomeItems);
-                using (var transaction = ctx.Database.BeginTransaction())
-                {
-                    ctx.Set<Entity.DS_OutcomeItems>().Add(model);
-                    var result = ctx.SaveChanges();
-                    transaction.Commit();
-                    _logger.Info($"Save({string.Join(",", dS_OutcomeItems.ID)})");
-                    return ActionResponse.Succeed();
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error($"Save({string.Join(",", dS_OutcomeItems.ID)}), Exception: {ex}");
-                return ActionResponse.Failure(ex.Message);
-            }
-        }
+        //    try
+        //    {
+        //        var ctx = new MainDataContext();
+        //        var model = Mapper.Map<Entity.DS_OutcomeItems>(dS_OutcomeItems);
+        //        using (var transaction = ctx.Database.BeginTransaction())
+        //        {
+        //            ctx.Set<Entity.DS_OutcomeItems>().Add(model);
+        //            var result = ctx.SaveChanges();
+        //            transaction.Commit();
+        //            _logger.Info($"Save({string.Join(",", dS_OutcomeItems.ID)})");
+        //            return ActionResponse.Succeed();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.Error($"Save({string.Join(",", dS_OutcomeItems.ID)}), Exception: {ex}");
+        //        return ActionResponse.Failure(ex.Message);
+        //    }
+        //}
 
 
 

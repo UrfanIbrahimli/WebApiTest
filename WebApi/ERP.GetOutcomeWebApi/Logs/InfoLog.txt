@@ -33,3 +33,4 @@
 2019-10-29 16:34:49.8022 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeItems(381) 
 2019-10-29 16:40:42.0075 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeItems(381) 
 2019-10-29 16:40:42.0285 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeList(7,9) 
+2019-10-31 11:10:32.2513 ERP.GetOutcomeWebApi.Repositories.BaseRepository GetOutcomeList(7,9) 
