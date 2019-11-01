@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Common.Logging;
 using ERP.WebApi.Models;
 using ERP.WebApi.Response;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace ERP.WebApi.Helpers
 {
     public class StockHelper
     {
-        private static readonly ILog _logger = LogManager.GetLogger<StockHelper>();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         public static ActionResponse IncomePriceAdd(DS_IncomePrice dS_IncomePrice)
         {
             string Id = Convert.ToInt32(dS_IncomePrice.DS_StockID.Value) + "" + Convert.ToInt32(dS_IncomePrice.ID);

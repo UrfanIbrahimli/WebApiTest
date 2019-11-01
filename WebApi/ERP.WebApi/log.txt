@@ -1,0 +1,1 @@
+﻿2019-11-01 18:29:55.5662|ERROR|ERP.WebApi.Controllers.BaseController|Create(False), Exception: Object reference not set to an instance of an object.
