@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Common.Logging;
 using ERP.WebApi.Helpers;
 using ERP.WebApi.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ namespace ERP.WebApi.Controllers
 {
     public class BaseController : ApiController
     {
-        private readonly ILog _logger;
+        private readonly ILogger _logger;
         public BaseController()
         {
-            _logger = LogManager.GetLogger<BaseController>();
+            _logger = LogManager.GetCurrentClassLogger();
         }
 
         [NonAction]
