@@ -46,10 +46,10 @@ namespace ERP.WebApi.Controllers
 
                         StockHelper.OutcomeAdd(outcome);
 
-                        foreach (var outcomeItem in outcome.DS_OutcomeItems)
-                        {
-                            StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
-                        }
+                        //foreach (var outcomeItem in outcome.DS_OutcomeItems)
+                        //{
+                        //    StockHelper.OutcomeItemAdd(outcomeItem, outcome.DS_StockID.Value);
+                        //}
                     }
                 }
                 
